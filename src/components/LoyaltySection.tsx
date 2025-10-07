@@ -5,23 +5,23 @@ import { Gift, Users, Trophy, Sparkles } from "lucide-react";
 const benefits = [
   {
     icon: Gift,
-    title: "Earn Points",
-    description: "Get 10 points for every dollar spent on orders"
+    title: "Earn on Every Order",
+    description: "Collect 10 points per $1 spent. Redeem anytime for discounts and free products."
   },
   {
     icon: Users,
-    title: "Refer Friends",
-    description: "Earn $20 credit when friends make their first order"
+    title: "Refer & Earn $20",
+    description: "Share your code. When friends place their first order, you both get $20 credit."
   },
   {
     icon: Trophy,
-    title: "Level Up",
-    description: "Unlock exclusive perks and early access to drops"
+    title: "Level Up for Perks",
+    description: "Unlock tiers: Silver, Gold, Platinum. Get early access to new drops and exclusive deals."
   },
   {
     icon: Sparkles,
-    title: "VIP Rewards",
-    description: "Birthday gifts, free delivery, and surprise bonuses"
+    title: "VIP Treatment",
+    description: "Birthday surprises, free delivery upgrades, and members-only flash sales."
   }
 ];
 
@@ -31,10 +31,11 @@ export default function LoyaltySection() {
       <div className="container mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">
-            Join The Candy Club
+            Join The Candy Club Rewards
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Get rewarded for every order. Share the love, earn points, and unlock exclusive benefits
+            Turn every order into rewards. Earn points automatically, refer friends for instant credit, 
+            and unlock VIP perks as you level up.
           </p>
         </div>
         

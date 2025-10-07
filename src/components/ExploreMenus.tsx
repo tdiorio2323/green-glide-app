@@ -53,10 +53,11 @@ export default function ExploreMenus() {
       <div className="container mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-holographic bg-clip-text text-transparent">
-            Explore Local Brands
+            Featured Drops & Local Favorites
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Discover premium cannabis from trusted dispensaries and brands in your neighborhood
+            Browse top-rated dispensaries near you. Each menu features lab-tested products, 
+            real customer reviews, and fast delivery times.
           </p>
         </div>
         

@@ -16,17 +16,18 @@ export default function Footer() {
             />
           </div>
           <h2 className="text-3xl md:text-5xl font-bold mb-4 bg-gradient-holographic bg-clip-text text-transparent">
-            Ready to Join The Candy Club?
+            Join The Candy Club Today
           </h2>
           <p className="text-lg text-muted-foreground mb-8">
-            Start exploring premium cannabis from local brands. Sign up today and get $10 off your first order.
+            Sign up now and get $10 off your first order. Start earning rewards, discover local favorites, 
+            and enjoy safe delivery straight to your door.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button variant="holographic" size="lg" className="text-lg px-8">
-              Get Started
+              🍬 Get Started Free
             </Button>
             <Button variant="hero" size="lg" className="text-lg px-8">
-              Learn More
+              Log In
             </Button>
           </div>
         </div>

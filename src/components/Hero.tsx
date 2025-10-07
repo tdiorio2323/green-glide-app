@@ -26,18 +26,22 @@ export default function Hero() {
         </p>
         
         <p className="text-xl md:text-2xl text-foreground/90 mb-8 max-w-3xl mx-auto leading-relaxed">
-          Your neighborhood cannabis marketplace. Connect with local brands, 
-          explore premium products, and enjoy safe delivery to your door.
+          Browse curated menus from licensed local dispensaries. Order premium cannabis 
+          and get it delivered safely to your door—just like your favorite food delivery.
         </p>
         
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <Button variant="holographic" size="lg" className="min-w-48">
-            Start Shopping
+            🍬 Start Shopping
           </Button>
           <Button variant="hero" size="lg" className="min-w-48">
-            Join as Brand
+            🍭 List Your Brand
           </Button>
         </div>
+        
+        <p className="text-sm text-foreground/60 mt-6">
+          Must be 21+ with valid ID • Free delivery on orders $50+
+        </p>
       </div>
     </section>
   );

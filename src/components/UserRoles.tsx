@@ -7,42 +7,42 @@ const roles = [
     icon: ShoppingCart,
     title: "Customers",
     subtitle: "Browse, Order, Enjoy",
-    description: "Discover premium cannabis from trusted local brands. Browse curated menus, read reviews, and get products delivered safely to your door.",
+    description: "Shop from licensed local dispensaries. Browse real-time menus, compare products and prices, read verified reviews, and track your delivery from checkout to your door.",
     features: [
-      "Explore local dispensary menus",
-      "Safe & secure delivery",
-      "Build loyalty with favorites",
-      "Track orders in real-time"
+      "Real-time menus & inventory",
+      "Verified reviews & ratings",
+      "Earn rewards on every order",
+      "Same-day delivery available"
     ],
-    cta: "Start Shopping",
+    cta: "🍬 Start Shopping",
     ctaVariant: "holographic" as const
   },
   {
     icon: Store,
     title: "Brands",
     subtitle: "Manage, Engage, Grow",
-    description: "Connect directly with your community. Manage your menu, engage customers, and build lasting relationships through our platform.",
+    description: "Reach customers directly through your own storefront. Update menus in real-time, run promotions, respond to reviews, and build customer loyalty—all from one dashboard.",
     features: [
-      "Manage product catalog",
-      "Direct customer engagement",
-      "Analytics & insights",
-      "Loyalty program tools"
+      "Custom storefront & branding",
+      "Real-time menu management",
+      "Customer insights & analytics",
+      "Built-in marketing tools"
     ],
-    cta: "Join Platform",
+    cta: "🍭 List Your Brand",
     ctaVariant: "golden" as const
   },
   {
     icon: Shield,
     title: "Super Admin",
-    subtitle: "Ensure, Oversee, Optimize",
-    description: "Maintain compliance, ensure safety, and keep operations running smoothly. Advanced tools for platform management and oversight.",
+    subtitle: "Oversee, Protect, Scale",
+    description: "Keep the marketplace safe, compliant, and running smoothly. Monitor all transactions, verify licenses, manage disputes, and maintain platform integrity with comprehensive admin tools.",
     features: [
-      "Compliance monitoring",
-      "Safety protocols",
-      "Platform analytics",
-      "User management"
+      "License & compliance verification",
+      "Transaction monitoring",
+      "Dispute resolution tools",
+      "Platform-wide analytics"
     ],
-    cta: "Admin Access",
+    cta: "Admin Dashboard",
     ctaVariant: "hero" as const
   }
 ];
@@ -53,11 +53,11 @@ export default function UserRoles() {
       <div className="container mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-holographic bg-clip-text text-transparent">
-            Built for Everyone
+            A Platform Built for Everyone
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Whether you're shopping, selling, or overseeing, The Candy Shop creates 
-            seamless experiences for every role in the cannabis community.
+            Whether you're ordering your favorites, growing your brand, or managing the marketplace, 
+            The Candy Shop delivers the tools you need to succeed.
           </p>
         </div>
         
