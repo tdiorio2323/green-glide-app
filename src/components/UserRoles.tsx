@@ -56,7 +56,7 @@ export default function UserRoles() {
             Built for Everyone
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Whether you're shopping, selling, or overseeing, CABANA creates 
+            Whether you're shopping, selling, or overseeing, The Candy Shop creates 
             seamless experiences for every role in the cannabis community.
           </p>
         </div>
