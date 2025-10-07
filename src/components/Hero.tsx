@@ -1,11 +1,19 @@
 import { Button } from "@/components/ui/button";
 import candymanLogo from "@/assets/candyman-logo.jpg";
+import heroImage from "@/assets/candy-shop-hero.png";
 
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background */}
-      <div className="absolute inset-0 bg-gradient-tropical" />
+      <div className="absolute inset-0">
+        <img 
+          src={heroImage} 
+          alt="The Candy Shop" 
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-black/30" />
+      </div>
       
       {/* Content */}
       <div className="relative z-10 container mx-auto px-6 text-center">
