@@ -30,12 +30,8 @@ export default [
     { id: 7, name: "500mg Birthday Cake Cookie", image: "/candyman-birthday-cake-cookie.png", price: 55, category: "cookies" },
 
     // Brownies
-    { id: 9, name: "Double Fudge Brownie (100mg)", image: "/CANDYMAN 1.jpg", price: 30, category: "brownies" },
+    { id: 9, name: "Double Fudge Brownie (100mg)", image: "/CANDY MAN 2.png", price: 30, category: "brownies" },
 
-    // Concentrates
-    { id: 11, name: "Candy Wax 1g", image: "/CANDYMAN 1.jpg", price: 60, category: "concentrates" },
-    { id: 12, name: "Shatter 1g", image: "/CANDYMAN 1.jpg", price: 55, category: "concentrates" },
-    { id: 13, name: "Live Resin 1g", image: "/CANDYMAN 1.jpg", price: 70, category: "concentrates" },
 
     // Beverages
     { id: 17, name: "Blue Raspberry Lemonade", image: "/blue-raspberry-lemonade.jpeg", price: 15, category: "beverages" },
