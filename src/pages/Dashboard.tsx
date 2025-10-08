@@ -1,44 +1,8 @@
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
+import { categories } from "@/data/categories";
+import products from "@/data/products";
 import { Card } from "@/components/ui/card";
-
-const categories = [
-  { id: "flower", label: "Flower" },
-  { id: "house-flower", label: "House Flower" },
-  { id: "edibles", label: "Edibles" },
-  { id: "brownies", label: "Brownies" },
-  { id: "concentrates", label: "Concentrates" },
-  { id: "vapes", label: "Vapes" },
-];
-
-const products = [
-  // Flower
-  { id: 1, name: "Candy Kush 3.5g", category: "flower", price: 45, img: "/placeholder.svg" },
-  { id: 2, name: "Bubble Pop 7g", category: "flower", price: 80, img: "/placeholder.svg" },
-  { id: 3, name: "Purple Haze 3.5g", category: "flower", price: 50, img: "/placeholder.svg" },
-
-  // House Flower
-  { id: 4, name: "House Blend #1 – 1oz", category: "house-flower", price: 120, img: "/placeholder.svg" },
-  { id: 5, name: "Shake Mix (½oz)", category: "house-flower", price: 40, img: "/placeholder.svg" },
-  { id: 6, name: "Loose Flower Mix 1oz", category: "house-flower", price: 100, img: "/placeholder.svg" },
-
-  // Edibles
-  { id: 7, name: "Gummy Pack (100mg)", category: "edibles", price: 25, img: "/placeholder.svg" },
-  { id: 8, name: "Chocolate Bar (100mg)", category: "edibles", price: 30, img: "/placeholder.svg" },
-
-  // Brownies
-  { id: 9, name: "Double Fudge Brownie (100mg)", category: "brownies", price: 30, img: "/placeholder.svg" },
-  { id: 10, name: "Mint Chocolate Brownie (100mg)", category: "brownies", price: 32, img: "/placeholder.svg" },
-
-  // Concentrates
-  { id: 11, name: "Candy Wax 1g", category: "concentrates", price: 60, img: "/placeholder.svg" },
-  { id: 12, name: "Shatter 1g", category: "concentrates", price: 55, img: "/placeholder.svg" },
-  { id: 13, name: "Live Resin 1g", category: "concentrates", price: 70, img: "/placeholder.svg" },
-
-  // Vapes
-  { id: 14, name: "Cotton Candy Vape Pen 1g", category: "vapes", price: 55, img: "/placeholder.svg" },
-  { id: 15, name: "Blue Dream Cart 0.5g", category: "vapes", price: 40, img: "/placeholder.svg" },
-];
+import { Button } from "@/components/ui/button";
 
 interface CartItem {
   id: number;
@@ -51,7 +15,7 @@ export default function Dashboard() {
   const [selectedCategory, setSelectedCategory] = useState("flower");
   const [cart, setCart] = useState<CartItem[]>([]);
 
-  const filtered = products.filter((p) => p.category === selectedCategory);
+  const filtered = products.filter(p => p.category === selectedCategory);
 
   const addToCart = (item: typeof products[0]) => {
     const existing = cart.find((c) => c.id === item.id);
@@ -66,54 +30,76 @@ export default function Dashboard() {
   const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
-    <main className="min-h-screen bg-background text-foreground pb-24">
+    <main
+      className="min-h-screen text-white bg-cover bg-center bg-no-repeat"
+      style={{ backgroundImage: 'url(/candy-shop.png)' }}
+    >
       {/* Header */}
-      <div className="bg-card/80 backdrop-blur-sm border-b border-border p-4">
-        <h1 className="text-2xl font-bold bg-gradient-holographic bg-clip-text text-transparent text-center">
-          Candyman Exotics
-        </h1>
+      <div className="bg-black/80 backdrop-blur-sm border-b border-white/10 p-4">
+        <div className="flex justify-center">
+          <img
+            src="/candy-main-logo.png"
+            alt="Candyman Exotics"
+            className="h-16 w-auto drop-shadow-lg"
+          />
+        </div>
       </div>
 
       {/* Category Slider */}
-      <div className="sticky top-0 bg-background/90 backdrop-blur-md z-20 border-b border-border">
-        <div className="flex gap-3 overflow-x-auto p-3 scrollbar-hide">
-          {categories.map((cat) => (
+      <div className="sticky top-0 z-20 bg-black/80 backdrop-blur-xl border-b border-white/10">
+        <div className="flex overflow-x-auto gap-2 px-4 py-3">
+          {categories.map(cat => (
             <Button
               key={cat.id}
-              variant={cat.id === selectedCategory ? "default" : "ghost"}
               onClick={() => setSelectedCategory(cat.id)}
-              className={`whitespace-nowrap font-semibold px-4 py-2 ${
-                cat.id === selectedCategory
-                  ? "bg-gradient-holographic text-foreground shadow-glow"
-                  : "hover:bg-accent/20"
-              }`}
+              className={`
+                rounded-full px-5 py-2 text-sm font-semibold
+                ${cat.id === selectedCategory
+                  ? "bg-gradient-to-r from-fuchsia-400 via-amber-300 to-cyan-300 text-black"
+                  : "bg-white/8 text-white/80 ring-1 ring-white/10 hover:bg-white/12"}
+              `}
+              variant="ghost"
             >
-              {cat.label}
+              {cat.name}
             </Button>
           ))}
         </div>
       </div>
 
       {/* Product List */}
-      <div className="grid gap-4 p-6">
-        {filtered.map((p) => (
+      <div className="space-y-4 px-4 py-6">
+        {filtered.map(p => (
           <Card
             key={p.id}
-            className="flex items-center gap-4 p-4 bg-card/60 backdrop-blur-sm border-border hover:border-primary/50 transition-all"
+            className="
+              flex items-center gap-4 p-4
+              rounded-3xl
+              bg-white/6 backdrop-blur-2xl
+              ring-1 ring-white/10 hover:ring-white/20
+              shadow-[0_10px_30px_rgba(0,0,0,0.35)]
+              transition
+            "
           >
             <img
-              src={p.img}
+              src={p.image}
               alt={p.name}
-              className="w-20 h-20 object-cover rounded-md border border-border"
+              className="w-16 h-16 rounded-2xl object-cover ring-1 ring-white/15 bg-black/30"
             />
             <div className="flex-1">
-              <h3 className="font-bold text-lg">{p.name}</h3>
-              <p className="text-sm text-golden font-semibold">${p.price.toFixed(2)}</p>
+              <h3 className="font-semibold text-white/95">{p.name}</h3>
+              <p className="text-sm font-semibold text-amber-300">${p.price.toFixed(2)}</p>
             </div>
             <Button
-              variant="default"
               onClick={() => addToCart(p)}
-              className="bg-gradient-holographic hover:opacity-90 text-foreground font-semibold shadow-glow"
+              className="
+                relative rounded-full px-4 py-2 text-sm font-bold text-slate-900
+                bg-gradient-to-r from-fuchsia-300 via-amber-200 to-cyan-300
+                shadow-[0_8px_24px_rgba(0,0,0,0.35)]
+                hover:opacity-95
+                before:content-[''] before:absolute before:inset-0 before:rounded-full
+                before:bg-[linear-gradient(to_bottom,rgba(255,255,255,0.65),rgba(255,255,255,0.08))]
+                before:pointer-events-none
+              "
             >
               Add to Cart
             </Button>
@@ -123,19 +109,16 @@ export default function Dashboard() {
 
       {/* Checkout Bar */}
       {cart.length > 0 && (
-        <div className="fixed bottom-0 left-0 right-0 bg-card/95 backdrop-blur-md border-t border-border p-4 flex justify-between items-center shadow-glow z-30">
+        <div className="fixed bottom-0 left-0 right-0 bg-black/95 backdrop-blur-md border-t border-white/10 p-4 flex justify-between items-center z-30">
           <div>
-            <p className="font-medium text-foreground">
+            <p className="font-medium text-white">
               {totalItems} item{totalItems > 1 ? "s" : ""}
             </p>
-            <p className="text-golden font-bold text-lg">${totalPrice.toFixed(2)}</p>
+            <p className="text-green-400 font-bold text-lg">${totalPrice.toFixed(2)}</p>
           </div>
-          <Button
-            size="lg"
-            className="bg-gradient-holographic hover:opacity-90 text-foreground font-bold shadow-golden px-8"
-          >
+          <button className="bg-gradient-to-r from-green-400 to-emerald-500 text-black font-bold px-8 py-3 rounded-full hover:opacity-90">
             Checkout
-          </Button>
+          </button>
         </div>
       )}
     </main>
