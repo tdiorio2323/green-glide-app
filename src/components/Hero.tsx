@@ -19,7 +19,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen flex flex-col overflow-hidden">
       {/* Full-Screen Background */}
       <div className="absolute inset-0">
         <img
@@ -28,11 +28,23 @@ export default function Hero() {
           className="w-full h-full object-cover"
         />
         {/* Dark gradient at bottom only */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/60" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/70" />
       </div>
 
-      {/* Centered Access Code Interface */}
-      <div className="relative z-10 container mx-auto px-6">
+      {/* Logo at top - slightly lower with breathing animation */}
+      <div className="relative z-10 flex items-center justify-center pt-[15vh] pb-[10vh]">
+        <img
+          src="/candy-main-logo.png"
+          alt="Candyman Exotics"
+          className="h-32 w-auto drop-shadow-2xl animate-[breathe_3s_ease-in-out_infinite]"
+        />
+      </div>
+
+      {/* Spacer to push content to bottom */}
+      <div className="flex-1"></div>
+
+      {/* Access Code Interface - positioned at bottom 25% of viewport */}
+      <div className="relative z-10 container mx-auto px-6 pb-[15vh] w-full">
         <div className="max-w-md mx-auto">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="text-center space-y-4">
@@ -48,42 +60,96 @@ export default function Hero() {
                   onChange={(value) => setCode(value)}
                   className="gap-2"
                 >
-                  <InputOTPGroup className="gap-2">
+                  <InputOTPGroup className="gap-3">
                     <InputOTPSlot
                       index={0}
-                      className="w-12 h-14 text-xl border-primary/50 bg-card/50 backdrop-blur-sm text-foreground focus:border-primary focus:ring-primary/50 shadow-glow"
+                      className="
+                        w-14 h-14 rounded-full
+                        bg-white/20 backdrop-blur-xl
+                        border border-white/40 ring-1 ring-white/40
+                        focus:ring-2 focus:ring-emerald-300/80
+                        shadow-[inset_0_1px_2px_rgba(255,255,255,0.6),0_4px_12px_rgba(0,0,0,0.25)]
+                        text-lg text-white/90
+                      "
                     />
                     <InputOTPSlot
                       index={1}
-                      className="w-12 h-14 text-xl border-primary/50 bg-card/50 backdrop-blur-sm text-foreground focus:border-primary focus:ring-primary/50 shadow-glow"
+                      className="
+                        w-14 h-14 rounded-full
+                        bg-white/20 backdrop-blur-xl
+                        border border-white/40 ring-1 ring-white/40
+                        focus:ring-2 focus:ring-emerald-300/80
+                        shadow-[inset_0_1px_2px_rgba(255,255,255,0.6),0_4px_12px_rgba(0,0,0,0.25)]
+                        text-lg text-white/90
+                      "
                     />
                     <InputOTPSlot
                       index={2}
-                      className="w-12 h-14 text-xl border-primary/50 bg-card/50 backdrop-blur-sm text-foreground focus:border-primary focus:ring-primary/50 shadow-glow"
+                      className="
+                        w-14 h-14 rounded-full
+                        bg-white/20 backdrop-blur-xl
+                        border border-white/40 ring-1 ring-white/40
+                        focus:ring-2 focus:ring-emerald-300/80
+                        shadow-[inset_0_1px_2px_rgba(255,255,255,0.6),0_4px_12px_rgba(0,0,0,0.25)]
+                        text-lg text-white/90
+                      "
                     />
                     <InputOTPSlot
                       index={3}
-                      className="w-12 h-14 text-xl border-primary/50 bg-card/50 backdrop-blur-sm text-foreground focus:border-primary focus:ring-primary/50 shadow-glow"
+                      className="
+                        w-14 h-14 rounded-full
+                        bg-white/20 backdrop-blur-xl
+                        border border-white/40 ring-1 ring-white/40
+                        focus:ring-2 focus:ring-emerald-300/80
+                        shadow-[inset_0_1px_2px_rgba(255,255,255,0.6),0_4px_12px_rgba(0,0,0,0.25)]
+                        text-lg text-white/90
+                      "
                     />
                     <InputOTPSlot
                       index={4}
-                      className="w-12 h-14 text-xl border-primary/50 bg-card/50 backdrop-blur-sm text-foreground focus:border-primary focus:ring-primary/50 shadow-glow"
+                      className="
+                        w-14 h-14 rounded-full
+                        bg-white/20 backdrop-blur-xl
+                        border border-white/40 ring-1 ring-white/40
+                        focus:ring-2 focus:ring-emerald-300/80
+                        shadow-[inset_0_1px_2px_rgba(255,255,255,0.6),0_4px_12px_rgba(0,0,0,0.25)]
+                        text-lg text-white/90
+                      "
                     />
                     <InputOTPSlot
                       index={5}
-                      className="w-12 h-14 text-xl border-primary/50 bg-card/50 backdrop-blur-sm text-foreground focus:border-primary focus:ring-primary/50 shadow-glow"
+                      className="
+                        w-14 h-14 rounded-full
+                        bg-white/20 backdrop-blur-xl
+                        border border-white/40 ring-1 ring-white/40
+                        focus:ring-2 focus:ring-emerald-300/80
+                        shadow-[inset_0_1px_2px_rgba(255,255,255,0.6),0_4px_12px_rgba(0,0,0,0.25)]
+                        text-lg text-white/90
+                      "
                     />
                   </InputOTPGroup>
                 </InputOTP>
               </div>
             </div>
 
-            {/* Submit Button with holographic gradient */}
+            {/* Submit Button with vibrant glossy gradient */}
             <Button
               type="submit"
               size="lg"
               disabled={code.length !== 6}
-              className="w-full bg-gradient-holographic hover:opacity-90 text-foreground font-semibold shadow-glow disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+              className="
+                w-full relative rounded-full px-6 py-5 text-base font-extrabold
+                text-slate-900
+                bg-gradient-to-r from-pink-300 via-amber-200 to-cyan-300
+                border border-white/40
+                shadow-[0_8px_24px_rgba(16,24,40,0.45)]
+                hover:shadow-[0_12px_28px_rgba(16,24,40,0.55)]
+                transition
+                before:content-[''] before:absolute before:inset-0 before:rounded-full
+                before:bg-[linear-gradient(to_bottom,rgba(255,255,255,0.65),rgba(255,255,255,0.08))]
+                before:pointer-events-none
+                disabled:opacity-50 disabled:cursor-not-allowed
+              "
             >
               Enter
             </Button>
