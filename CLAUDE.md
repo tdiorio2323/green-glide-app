@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a React + TypeScript + Vite project called "Green Glide" (formerly CANDYMAN EXOTICS), a cannabis marketplace web application built with shadcn/ui components and Tailwind CSS. The project is managed via Lovable.dev and follows a single-page application (SPA) architecture.
+This is a React + TypeScript + Vite project called "Green Glide" (branded as CABANA Cannabis Marketplace), a cannabis marketplace web application built with shadcn/ui components and Tailwind CSS. The project is managed via Lovable.dev and follows a single-page application (SPA) architecture.
 
 ## Development Commands
 
@@ -31,7 +31,10 @@ npm run preview
 
 - **Entry Point**: `src/main.tsx` → `src/App.tsx`
 - **Routing**: React Router v6 with `BrowserRouter`
-  - All custom routes must be added ABOVE the catch-all "*" route in `App.tsx:19`
+  - Routes are centrally defined in `src/routes.ts` as an array of `RouteItem` objects
+  - Each route has: `path`, `component`, `label`, and optional `private` flag
+  - App.tsx maps over the routes array to generate `<Route>` elements
+  - To add new routes: add entry to `routes` array in `src/routes.ts` ABOVE the catch-all "*" route
   - NotFound page handles 404s
 - **State Management**: TanStack Query (React Query) for server state
 - **UI Framework**: shadcn/ui components (~50 components in `src/components/ui/`)
@@ -51,18 +54,22 @@ src/
 
 ### Design System
 
-The project uses a **tropical/holographic cannabis marketplace** design system defined in `src/index.css`:
+The project uses a **CABANA tropical/holographic cannabis marketplace** design system defined in `src/index.css`:
 
 - **Colors**: All colors use HSL format with CSS custom properties
-  - Primary: Deep purple/blue holographic (`--primary`)
-  - Secondary: Cannabis green (`--secondary`)
-  - Accent: Tropical teal/cyan (`--accent`)
-  - Golden: Highlight color (`--golden`)
-- **Gradients**: `--gradient-holographic` and `--gradient-tropical`
+  - Primary: Deep purple/blue holographic (`--primary: 250 75% 60%`)
+  - Secondary: Cannabis green (`--secondary: 120 30% 25%`)
+  - Accent: Tropical teal/cyan (`--accent: 180 75% 55%`)
+  - Golden: Highlight color (`--golden: 45 100% 65%`)
+  - Background: Dark warm brown (`--background: 12 15% 8%`)
+- **Gradients**:
+  - `--gradient-holographic`: Multi-color holographic effect (purple → magenta → cyan → gold)
+  - `--gradient-tropical`: Warm brown gradient
 - **Shadows**: Glow effects via `--shadow-glow` and `--shadow-golden`
 - **Animations**: Custom timing functions (`--transition-smooth`, `--transition-bounce`)
+- **Theme**: Uses dark theme by default (no separate dark mode toggle needed)
 
-**IMPORTANT**: When adding new colors, they MUST be defined as HSL values in `src/index.css` and referenced via CSS custom properties.
+**IMPORTANT**: When adding new colors, they MUST be defined as HSL values in `src/index.css` and referenced via CSS custom properties. The design system extends into `tailwind.config.ts` where color utilities like `bg-golden` or `text-primary-glow` are defined.
 
 ### Key Technical Details
 
@@ -76,16 +83,23 @@ The project uses a **tropical/holographic cannabis marketplace** design system d
 
 When adding routes to the application:
 
-1. Create page component in `src/pages/`
-2. Import and add `<Route>` in `src/App.tsx` ABOVE line 20 (the catch-all route)
-3. Route components should be default exports
+1. Create page component in `src/pages/` (should be a default export)
+2. Import the component in `src/routes.ts`
+3. Add entry to the `routes` array ABOVE the catch-all "*" route
 
 Example:
 ```tsx
-// In App.tsx, add BEFORE the "*" route:
-<Route path="/new-page" element={<NewPage />} />
-<Route path="*" element={<NotFound />} />
+// In src/routes.ts:
+import NewPage from "./pages/NewPage";
+
+export const routes: RouteItem[] = [
+  { path: "/", component: Index, label: "Landing (OTP)" },
+  { path: "/new-page", component: NewPage, label: "New Page", private: false },
+  { path: "*", component: NotFound, label: "Not Found" }, // Keep this last
+];
 ```
+
+Note: The `private` flag is for organizational purposes (e.g., routes requiring authentication).
 
 ### Working with shadcn/ui
 
@@ -102,6 +116,14 @@ Example:
 
 ## Integration Notes
 
-- **Lovable.dev**: Changes pushed to this repo sync with Lovable project
+- **Lovable.dev**: Changes pushed to this repo sync with Lovable project (ID: 80074ec3-bcf4-4664-b8d4-6e22f1506a17)
 - **Build Modes**: Use `npm run build:dev` for development builds (includes component tagger)
 - **TypeScript**: Configured with separate tsconfig files (app, node, base)
+- **Deployment**: Configured for Vercel with SPA rewrites (see `vercel.json`)
+
+## Current Pages
+
+- `/` - Landing page with OTP authentication
+- `/dashboard` - Main storefront (marked as private)
+- `/_routes` - Routes debug page for development
+- `*` - 404 Not Found page

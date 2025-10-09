@@ -1,0 +1,101 @@
+{
+  "project_description": "This project is a modern web application built with a robust and popular set of frontend technologies. It appears to be a storefront application, given the 'Dashboard' route labeled 'Storefront'.",
+  "tech_stack": {
+    "frontend_framework": {
+      "name": "React",
+      "version": "18.3.1",
+      "description": "A declarative, component-based JavaScript library for building user interfaces."
+    },
+    "language": {
+      "name": "TypeScript",
+      "version": "5.8.3",
+      "description": "A superset of JavaScript that adds static typing, enhancing code quality and maintainability."
+    },
+    "build_tool": {
+      "name": "Vite",
+      "version": "5.4.19",
+      "description": "A fast and opinionated build tool that provides a lightning-fast development experience."
+    },
+    "styling": [
+      {
+        "name": "Tailwind CSS",
+        "version": "3.4.17",
+        "description": "A utility-first CSS framework for rapidly building custom designs."
+      },
+      {
+        "name": "PostCSS",
+        "version": "8.5.6",
+        "description": "A tool for transforming CSS with JavaScript plugins."
+      },
+      {
+        "name": "Shadcn UI",
+        "description": "A collection of re-usable components that are accessible and customizable, integrated via numerous @radix-ui packages."
+      }
+    ],
+    "routing": {
+      "name": "React Router DOM",
+      "version": "6.30.1",
+      "description": "A standard library for routing in React applications, enabling navigation between different views."
+    },
+    "form_management": [
+      {
+        "name": "React Hook Form",
+        "version": "7.61.1",
+        "description": "A performant, flexible, and extensible forms library for React."
+      },
+      {
+        "name": "Zod",
+        "version": "3.25.76",
+        "description": "A TypeScript-first schema declaration and validation library."
+      }
+    ],
+    "state_management_data_fetching": {
+      "name": "React Query",
+      "version": "5.83.0",
+      "description": "A powerful library for managing, caching, and synchronizing server state in React applications."
+    },
+    "ui_components": {
+      "name": "Radix UI",
+      "description": "A low-level UI component library for building accessible design systems and web applications."
+    },
+    "linting": {
+      "name": "ESLint",
+      "version": "9.32.0",
+      "description": "A pluggable linting utility for JavaScript and JSX, ensuring code quality and consistency."
+    },
+    "other_dependencies": [
+      "class-variance-authority",
+      "clsx",
+      "tailwind-merge",
+      "tailwindcss-animate",
+      "date-fns",
+      "lucide-react",
+      "sonner",
+      "embla-carousel-react",
+      "recharts"
+    ]
+  },
+  "routes": [
+    {
+      "path": "/",
+      "component": "Index (src/pages/Index.tsx)",
+      "label": "Landing (OTP)"
+    },
+    {
+      "path": "/dashboard",
+      "component": "Dashboard (src/pages/Dashboard.tsx)",
+      "label": "Storefront",
+      "private": true
+    },
+    {
+      "path": "/_routes",
+      "component": "RoutesDebug (src/pages/RoutesDebug.tsx)",
+      "label": "Routes Debug"
+    },
+    {
+      "path": "*",
+      "component": "NotFound (src/pages/NotFound.tsx)",
+      "label": "Not Found"
+    }
+  ]
+}
