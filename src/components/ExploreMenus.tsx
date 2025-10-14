@@ -2,12 +2,15 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Star, Clock, MapPin } from "lucide-react";
-import candymanExotics from "@/assets/candyman-exotics.jpg";
+import doubleFudgeBrownie from "@/assets/double-fudge-brownie.png";
+import blueRaspberryLemonade from "@/assets/blue-raspberry-lemonade.jpeg";
+import birthdayCakeCookie from "@/assets/birthday-cake-cookie.png";
+import luckyCharms from "@/assets/lucky-charms.jpg";
 
 const brands = [
   {
     name: "Candyman Exotics",
-    image: candymanExotics,
+    image: doubleFudgeBrownie,
     rating: 4.9,
     reviews: 247,
     deliveryTime: "30-45 min",
@@ -17,7 +20,7 @@ const brands = [
   },
   {
     name: "Green Valley Farms",
-    image: candymanExotics,
+    image: blueRaspberryLemonade,
     rating: 4.7,
     reviews: 189,
     deliveryTime: "25-40 min",
@@ -27,7 +30,7 @@ const brands = [
   },
   {
     name: "Pacific Coast Collective",
-    image: candymanExotics,
+    image: birthdayCakeCookie,
     rating: 4.8,
     reviews: 312,
     deliveryTime: "35-50 min",
@@ -37,7 +40,7 @@ const brands = [
   },
   {
     name: "Sunset Wellness",
-    image: candymanExotics,
+    image: luckyCharms,
     rating: 4.6,
     reviews: 156,
     deliveryTime: "20-35 min",
