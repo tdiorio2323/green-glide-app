@@ -30,10 +30,13 @@ export default function LoyaltySection() {
     <section className="py-24 px-6 bg-card/20">
       <div className="container mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">
+          <h2 
+            className="text-4xl md:text-5xl font-bold mb-6 text-foreground"
+            style={{ WebkitTextStroke: '2px rgba(255, 255, 255, 0.8)' }}
+          >
             Join The Candy Club Rewards
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-xl text-white max-w-3xl mx-auto drop-shadow-lg">
             Turn every order into rewards. Earn points automatically, refer friends for instant credit, 
             and unlock VIP perks as you level up.
           </p>

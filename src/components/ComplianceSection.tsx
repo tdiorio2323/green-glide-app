@@ -29,10 +29,13 @@ export default function ComplianceSection() {
     <section className="py-16 px-6 bg-secondary/20">
       <div className="container mx-auto">
         <div className="text-center mb-12">
-          <h3 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
+          <h3 
+            className="text-3xl md:text-4xl font-bold mb-4 text-foreground"
+            style={{ WebkitTextStroke: '1.5px rgba(255, 255, 255, 0.8)' }}
+          >
             Safe, Legal, & Trusted
           </h3>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg text-white max-w-2xl mx-auto drop-shadow-lg">
             Your safety is our priority. Every step is compliant, secure, and transparent
           </p>
         </div>

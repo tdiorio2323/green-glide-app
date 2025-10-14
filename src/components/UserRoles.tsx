@@ -29,10 +29,13 @@ export default function UserRoles() {
     <section className="py-24 px-6 bg-gradient-subtle">
       <div className="container mx-auto max-w-7xl">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-holographic bg-clip-text text-transparent">
+          <h2 
+            className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-holographic bg-clip-text text-transparent"
+            style={{ WebkitTextStroke: '2px rgba(255, 255, 255, 0.8)' }}
+          >
             Official Candyman Merch
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-xl text-white max-w-3xl mx-auto drop-shadow-lg">
             Rep the brand with exclusive Candyman Exotics apparel and accessories. 
             Premium quality, limited drops.
           </p>
