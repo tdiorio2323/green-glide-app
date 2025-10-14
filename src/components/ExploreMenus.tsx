@@ -9,43 +9,43 @@ import luckyCharms from "@/assets/lucky-charms.jpg";
 
 const brands = [
   {
-    name: "Candyman Exotics",
+    name: "1000mg Double Fudge Brownie",
     image: doubleFudgeBrownie,
     rating: 4.9,
     reviews: 247,
     deliveryTime: "30-45 min",
     distance: "2.1 mi",
-    specialty: "Premium Edibles",
-    badge: "Top Rated"
+    specialty: "Premium Brownie",
+    badge: "Best Seller"
   },
   {
-    name: "Green Valley Farms",
+    name: "Blue Raspberry Lemonade",
     image: blueRaspberryLemonade,
     rating: 4.7,
     reviews: 189,
     deliveryTime: "25-40 min",
     distance: "1.8 mi",
-    specialty: "Organic Flower",
-    badge: "Certified"
+    specialty: "BEVERAGE",
+    badge: "Top Rated"
   },
   {
-    name: "Pacific Coast Collective",
+    name: "500mg Birthday Cake Cookie",
     image: birthdayCakeCookie,
     rating: 4.8,
     reviews: 312,
     deliveryTime: "35-50 min",
     distance: "3.2 mi",
-    specialty: "Concentrates",
+    specialty: "Cookie Dough Cookie",
     badge: "Popular"
   },
   {
-    name: "Sunset Wellness",
+    name: "Lucky Charms Strawberry Shortcake",
     image: luckyCharms,
     rating: 4.6,
     reviews: 156,
     deliveryTime: "20-35 min",
     distance: "1.2 mi",
-    specialty: "Wellness Products",
+    specialty: "Premium Flower",
     badge: "New"
   }
 ];
@@ -56,11 +56,11 @@ export default function ExploreMenus() {
       <div className="container mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-holographic bg-clip-text text-transparent">
-            Featured Drops & Local Favorites
+            Candyman Exotics Best Sellers
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Browse top-rated dispensaries near you. Each menu features lab-tested products, 
-            real customer reviews, and fast delivery times.
+            Our most popular products. Lab-tested, premium quality edibles, beverages, and flower 
+            with real customer reviews and fast delivery.
           </p>
         </div>
         
