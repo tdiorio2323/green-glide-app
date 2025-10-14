@@ -1,97 +1,74 @@
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { ShoppingCart, Store, Shield } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { ShoppingCart } from "lucide-react";
+import candymanLogo from "@/assets/candyman-logo.jpg";
 
-const roles = [
+const merchProducts = [
   {
-    icon: ShoppingCart,
-    title: "Customers",
-    subtitle: "Browse, Order, Enjoy",
-    description: "Shop from licensed local dispensaries. Browse real-time menus, compare products and prices, read verified reviews, and track your delivery from checkout to your door.",
-    features: [
-      "Real-time menus & inventory",
-      "Verified reviews & ratings",
-      "Earn rewards on every order",
-      "Same-day delivery available"
-    ],
-    cta: "🍬 Start Shopping",
-    ctaVariant: "holographic" as const
+    name: "Candyman Exotics T-Shirt",
+    price: 29.99,
+    image: candymanLogo,
+    description: "Premium cotton tee with official Candyman branding"
   },
   {
-    icon: Store,
-    title: "Brands",
-    subtitle: "Manage, Engage, Grow",
-    description: "Reach customers directly through your own storefront. Update menus in real-time, run promotions, respond to reviews, and build customer loyalty—all from one dashboard.",
-    features: [
-      "Custom storefront & branding",
-      "Real-time menu management",
-      "Customer insights & analytics",
-      "Built-in marketing tools"
-    ],
-    cta: "🍭 List Your Brand",
-    ctaVariant: "golden" as const
+    name: "Candyman Hoodie",
+    price: 54.99,
+    image: candymanLogo,
+    description: "Cozy pullover hoodie featuring The Candy Shop logo"
   },
   {
-    icon: Shield,
-    title: "Super Admin",
-    subtitle: "Oversee, Protect, Scale",
-    description: "Keep the marketplace safe, compliant, and running smoothly. Monitor all transactions, verify licenses, manage disputes, and maintain platform integrity with comprehensive admin tools.",
-    features: [
-      "License & compliance verification",
-      "Transaction monitoring",
-      "Dispute resolution tools",
-      "Platform-wide analytics"
-    ],
-    cta: "Admin Dashboard",
-    ctaVariant: "hero" as const
+    name: "Candyman Snapback",
+    price: 24.99,
+    image: candymanLogo,
+    description: "Classic snapback with embroidered Candyman Exotics logo"
   }
 ];
 
 export default function UserRoles() {
   return (
-    <section className="py-24 px-6">
-      <div className="container mx-auto">
+    <section className="py-24 px-6 bg-gradient-subtle">
+      <div className="container mx-auto max-w-7xl">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-holographic bg-clip-text text-transparent">
-            A Platform Built for Everyone
+            Official Candyman Merch
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Whether you're ordering your favorites, growing your brand, or managing the marketplace, 
-            The Candy Shop delivers the tools you need to succeed.
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            Rep the brand with exclusive Candyman Exotics apparel and accessories. 
+            Premium quality, limited drops.
           </p>
         </div>
         
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {roles.map((role, index) => (
-            <Card key={index} className="bg-card/50 border-border/50 backdrop-blur-sm hover:scale-105 transition-bounce group">
-              <CardHeader className="text-center">
-                <div className="mx-auto mb-4 p-4 rounded-full bg-primary/20 w-fit group-hover:shadow-glow transition-smooth">
-                  <role.icon className="h-8 w-8 text-primary" />
-                </div>
-                <CardTitle className="text-2xl font-bold text-foreground">
-                  {role.title}
+        <div className="grid md:grid-cols-3 gap-8">
+          {merchProducts.map((product, index) => (
+            <Card 
+              key={index}
+              className="bg-card/50 border-border/50 backdrop-blur-sm hover:scale-105 hover:shadow-glow transition-smooth overflow-hidden"
+            >
+              <div className="relative h-64 overflow-hidden bg-muted">
+                <img 
+                  src={product.image} 
+                  alt={product.name}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              
+              <CardHeader>
+                <CardTitle className="text-xl text-foreground">
+                  {product.name}
                 </CardTitle>
-                <CardDescription className="text-accent font-medium">
-                  {role.subtitle}
-                </CardDescription>
+                <p className="text-2xl font-bold text-accent">
+                  ${product.price}
+                </p>
               </CardHeader>
               
-              <CardContent className="space-y-6">
-                <p className="text-muted-foreground leading-relaxed">
-                  {role.description}
+              <CardContent className="space-y-4">
+                <p className="text-muted-foreground">
+                  {product.description}
                 </p>
                 
-                <ul className="space-y-2">
-                  {role.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className="flex items-center text-sm text-foreground/80">
-                      <div className="w-2 h-2 bg-accent rounded-full mr-3 flex-shrink-0" />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-                
-                <Button variant={role.ctaVariant} className="w-full">
-                  {role.cta}
+                <Button variant="holographic" className="w-full">
+                  <ShoppingCart className="mr-2 h-4 w-4" />
+                  Add to Cart
                 </Button>
               </CardContent>
             </Card>
