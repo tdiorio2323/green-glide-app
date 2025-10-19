@@ -1,5 +1,6 @@
 import Hero from "@/components/Hero";
 import ExploreMenus from "@/components/ExploreMenus";
+import OfficialMerch from "@/components/OfficialMerch";
 import UserRoles from "@/components/UserRoles";
 import LoyaltySection from "@/components/LoyaltySection";
 import TrustSection from "@/components/TrustSection";
@@ -15,6 +16,7 @@ const Index = () => {
     >
       <Hero />
       <ExploreMenus />
+      <OfficialMerch />
       <UserRoles />
       <LoyaltySection />
       <TrustSection />
