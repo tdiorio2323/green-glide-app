@@ -1,26 +1,25 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ShoppingCart } from "lucide-react";
-import candymanLogo from "@/assets/candyman-logo.jpg";
 
 const merchProducts = [
   {
-    name: "Candyman Exotics T-Shirt",
-    price: 29.99,
-    image: candymanLogo,
-    description: "Premium cotton tee with official Candyman branding"
+    name: "Candyman Logo Hat",
+    price: 28,
+    image: "/merch/candyman-hat.png",
+    description: "Structured snapback with holographic logo embroidery and ventilated mesh back."
   },
   {
-    name: "Candyman Hoodie",
-    price: 54.99,
-    image: candymanLogo,
-    description: "Cozy pullover hoodie featuring The Candy Shop logo"
+    name: "Candyman Black Hoodie",
+    price: 68,
+    image: "/merch/candyman-black-hoodie.png",
+    description: "Heavyweight fleece hoodie with glow-in-the-dark sleeve print and kangaroo pocket."
   },
   {
-    name: "Candyman Snapback",
-    price: 24.99,
-    image: candymanLogo,
-    description: "Classic snapback with embroidered Candyman Exotics logo"
+    name: "Candy Shop Tee",
+    price: 34,
+    image: "/merch/candyman-shirt.jpg",
+    description: "Pigment-dyed tee featuring the classic drip logo and soft-hand screen print."
   }
 ];
 
@@ -47,11 +46,11 @@ export default function UserRoles() {
               key={index}
               className="bg-card/50 border-border/50 backdrop-blur-sm hover:scale-105 hover:shadow-glow transition-smooth overflow-hidden"
             >
-              <div className="relative h-64 overflow-hidden bg-muted">
+              <div className="relative h-80 overflow-hidden bg-muted">
                 <img 
                   src={product.image} 
                   alt={product.name}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
                 />
               </div>
               
