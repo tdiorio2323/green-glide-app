@@ -59,7 +59,7 @@ export default function ExploreMenus() {
             className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-holographic bg-clip-text text-transparent"
             style={{ WebkitTextStroke: '2px rgba(255, 255, 255, 0.8)' }}
           >
-            Candyman Exotics Best Sellers
+            The Candy Kitchen Best Sellers
           </h2>
           <p className="text-xl text-white max-w-2xl mx-auto drop-shadow-lg">
             Our most popular products. Lab-tested, premium quality edibles, beverages, and flower 

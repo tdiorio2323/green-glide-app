@@ -38,8 +38,8 @@ export default function Dashboard() {
       <div className="bg-black/80 backdrop-blur-sm border-b border-white/10 p-4">
         <div className="flex justify-center">
           <img
-            src="/candy-main-logo.png"
-            alt="Candyman Exotics"
+            src="/candy-kitchen-logo.png"
+            alt="The Candy Kitchen"
             className="h-16 w-auto drop-shadow-lg"
           />
         </div>

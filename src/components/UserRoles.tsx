@@ -4,21 +4,21 @@ import { ShoppingCart } from "lucide-react";
 
 const merchProducts = [
   {
-    name: "Candyman Logo Hat",
+    name: "The Candy Kitchen Logo Hat",
     price: 28,
-    image: "/merch/candyman-hat.png",
+    image: "/candy-kitchen-logo.png",
     description: "Structured snapback with holographic logo embroidery and ventilated mesh back."
   },
   {
-    name: "Candyman Black Hoodie",
+    name: "The Candy Kitchen Black Hoodie",
     price: 68,
-    image: "/merch/candyman-black-hoodie.png",
+    image: "/candy-kitchen-logo.png",
     description: "Heavyweight fleece hoodie with glow-in-the-dark sleeve print and kangaroo pocket."
   },
   {
-    name: "Candy Shop Tee",
+    name: "Candy Kitchen Tee",
     price: 34,
-    image: "/merch/candyman-shirt.jpg",
+    image: "/candy-kitchen-logo.png",
     description: "Pigment-dyed tee featuring the classic drip logo and soft-hand screen print."
   }
 ];
@@ -32,10 +32,10 @@ export default function UserRoles() {
             className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-holographic bg-clip-text text-transparent"
             style={{ WebkitTextStroke: '2px rgba(255, 255, 255, 0.8)' }}
           >
-            Official Candyman Merch
+            Official The Candy Kitchen Merch
           </h2>
           <p className="text-xl text-white max-w-3xl mx-auto drop-shadow-lg">
-            Rep the brand with exclusive Candyman Exotics apparel and accessories. 
+            Rep the brand with exclusive The Candy Kitchen apparel and accessories. 
             Premium quality, limited drops.
           </p>
         </div>

@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import candymanLogo from "@/assets/candyman-logo.jpg";
+import candyKitchenLogo from "@/assets/candy-kitchen-logo.png";
 
 export default function Footer() {
   return (
@@ -10,8 +10,8 @@ export default function Footer() {
         <div className="text-center mb-16 max-w-3xl mx-auto">
           <div className="flex justify-center mb-6">
             <img 
-              src={candymanLogo} 
-              alt="Candyman Exotics" 
+              src={candyKitchenLogo} 
+              alt="The Candy Kitchen" 
               className="h-24 w-auto"
             />
           </div>
@@ -82,7 +82,7 @@ export default function Footer() {
         {/* Copyright */}
         <div className="text-center text-sm text-muted-foreground">
           <p className="mb-2">
-            © 2025 The Candy Shop - Powered by Candyman Exotics. All rights reserved.
+            © 2025 The Candy Kitchen. All rights reserved.
           </p>
           <p className="text-xs">
             This product is for adults 21+ only. Please consume responsibly. 
