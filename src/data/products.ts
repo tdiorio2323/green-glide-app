@@ -27,10 +27,10 @@ export default [
     { id: 36, name: "Lays x Dirt Cake DOOSKTS 3.5g", image: "/Lays x Dirt Cake DOOSKTS.jpg", price: 50, category: "flower" },
 
     // Cookies
-    { id: 7, name: "500mg Birthday Cake Cookie", image: "/candyman-birthday-cake-cookie.png", price: 55, category: "cookies" },
+    { id: 7, name: "500mg Birthday Cake Cookie", image: "/candy-kitchen-logo.png", price: 55, category: "cookies" },
 
     // Brownies
-    { id: 9, name: "Double Fudge Brownie (100mg)", image: "/CANDY MAN 2.png", price: 30, category: "brownies" },
+    { id: 9, name: "Double Fudge Brownie (100mg)", image: "/candy-kitchen-logo.png", price: 30, category: "brownies" },
 
 
     // Beverages
