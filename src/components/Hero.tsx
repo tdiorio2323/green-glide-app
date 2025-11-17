@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
-import heroImage from "@/assets/candy-shop-hero.png";
+import heroImage from "@/assets/candy-kitchen-hero.png";
 
 export default function Hero() {
   const [code, setCode] = useState("");
@@ -34,8 +34,8 @@ export default function Hero() {
       {/* Logo at top - slightly lower with breathing animation */}
       <div className="relative z-10 flex items-center justify-center pt-[15vh] pb-[10vh]">
         <img
-          src="/candy-main-logo.png"
-          alt="Candyman Exotics"
+          src="/candy-kitchen-logo.png"
+          alt="The Candy Kitchen"
           className="h-32 w-auto drop-shadow-2xl animate-[breathe_3s_ease-in-out_infinite]"
         />
       </div>
