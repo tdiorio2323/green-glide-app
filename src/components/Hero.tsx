@@ -31,11 +31,11 @@ export default function Hero() {
       </div>
 
       {/* Centered Logo with breathing animation */}
-      <div className="relative z-10 flex items-center justify-center" style={{ height: '50vh' }}>
+      <div className="relative z-10 flex items-center justify-center" style={{ height: '60vh' }}>
         <img
           src="/candy-kitchen-logo.png"
           alt="The Candy Kitchen"
-          className="h-32 md:h-40 w-auto drop-shadow-2xl animate-[breathe_3s_ease-in-out_infinite]"
+          className="h-64 md:h-80 w-auto drop-shadow-2xl animate-[breathe_3s_ease-in-out_infinite]"
         />
       </div>
 
