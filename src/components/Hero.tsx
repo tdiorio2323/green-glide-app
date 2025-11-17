@@ -31,7 +31,7 @@ export default function Hero() {
       </div>
 
       {/* Centered Logo with breathing animation */}
-      <div className="relative z-10 flex-1 flex items-center justify-center">
+      <div className="relative z-10 flex items-center justify-center" style={{ height: '50vh' }}>
         <img
           src="/candy-kitchen-logo.png"
           alt="The Candy Kitchen"
@@ -39,10 +39,13 @@ export default function Hero() {
         />
       </div>
 
-      {/* Access Code Interface - centered on screen */}
-      <div className="relative z-10 flex-1 flex items-center justify-center px-6">
-        <div className="w-full max-w-md">
-          <form onSubmit={handleSubmit} className="space-y-8">
+      {/* Spacer */}
+      <div className="flex-1"></div>
+
+      {/* Access Code Interface - positioned above button */}
+      <div className="relative z-10 px-6 pb-6">
+        <div className="w-full max-w-md mx-auto">
+          <form onSubmit={handleSubmit} className="space-y-6">
             <div className="text-center space-y-6">
               <h2 className="text-2xl md:text-3xl font-bold bg-gradient-holographic bg-clip-text text-transparent drop-shadow-lg">
                 Enter Access Code
@@ -128,7 +131,7 @@ export default function Hero() {
             before:content-[''] before:absolute before:inset-0 before:rounded-full
             before:bg-[linear-gradient(to_bottom,rgba(255,255,255,0.4),rgba(255,255,255,0))]
             before:pointer-events-none
-            disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100
+            disabled:cursor-not-allowed disabled:hover:scale-100
           "
         >
           Enter The Candy Kitchen
