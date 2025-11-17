@@ -11,51 +11,47 @@ export default function Hero() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Basic stub validation - check if code is entered
-    if (code && code.length === 6) {
-      // In production, validate against backend
+    // Any 4-digit code grants entry
+    if (code && code.length === 4) {
       navigate("/dashboard");
     }
   };
 
   return (
-    <section className="relative min-h-screen flex flex-col overflow-hidden">
+    <section className="relative h-screen flex flex-col overflow-hidden">
       {/* Full-Screen Background */}
       <div className="absolute inset-0">
         <img
           src={heroImage}
-          alt="The Candy Shop"
+          alt="The Candy Kitchen"
           className="w-full h-full object-cover"
         />
-        {/* Dark gradient at bottom only */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/70" />
+        {/* Dark gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/60" />
       </div>
 
-      {/* Logo at top - slightly lower with breathing animation */}
-      <div className="relative z-10 flex items-center justify-center pt-[15vh] pb-[10vh]">
+      {/* Centered Logo with breathing animation */}
+      <div className="relative z-10 flex-1 flex items-center justify-center">
         <img
           src="/candy-kitchen-logo.png"
           alt="The Candy Kitchen"
-          className="h-32 w-auto drop-shadow-2xl animate-[breathe_3s_ease-in-out_infinite]"
+          className="h-32 md:h-40 w-auto drop-shadow-2xl animate-[breathe_3s_ease-in-out_infinite]"
         />
       </div>
 
-      {/* Spacer to push content to bottom */}
-      <div className="flex-1"></div>
-
-      {/* Access Code Interface - positioned at bottom 25% of viewport */}
-      <div className="relative z-10 container mx-auto px-6 pb-[15vh] w-full">
-        <div className="max-w-md mx-auto">
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="text-center space-y-4">
-              <h2 className="text-2xl md:text-3xl font-bold bg-gradient-holographic bg-clip-text text-transparent">
+      {/* Access Code Interface - centered on screen */}
+      <div className="relative z-10 flex-1 flex items-center justify-center px-6">
+        <div className="w-full max-w-md">
+          <form onSubmit={handleSubmit} className="space-y-8">
+            <div className="text-center space-y-6">
+              <h2 className="text-2xl md:text-3xl font-bold bg-gradient-holographic bg-clip-text text-transparent drop-shadow-lg">
                 Enter Access Code
               </h2>
 
-              {/* OTP Input with holographic styling */}
+              {/* 4-Digit OTP Input with holographic styling */}
               <div className="flex justify-center">
                 <InputOTP
-                  maxLength={6}
+                  maxLength={4}
                   value={code}
                   onChange={(value) => setCode(value)}
                   className="gap-2"
@@ -64,97 +60,79 @@ export default function Hero() {
                     <InputOTPSlot
                       index={0}
                       className="
-                        w-14 h-14 rounded-full
+                        w-16 h-16 md:w-20 md:h-20 rounded-full
                         bg-white/20 backdrop-blur-xl
                         border border-white/40 ring-1 ring-white/40
                         focus:ring-2 focus:ring-emerald-300/80
                         shadow-[inset_0_1px_2px_rgba(255,255,255,0.6),0_4px_12px_rgba(0,0,0,0.25)]
-                        text-lg text-white/90
+                        text-xl md:text-2xl text-white/90 font-bold
                       "
                     />
                     <InputOTPSlot
                       index={1}
                       className="
-                        w-14 h-14 rounded-full
+                        w-16 h-16 md:w-20 md:h-20 rounded-full
                         bg-white/20 backdrop-blur-xl
                         border border-white/40 ring-1 ring-white/40
                         focus:ring-2 focus:ring-emerald-300/80
                         shadow-[inset_0_1px_2px_rgba(255,255,255,0.6),0_4px_12px_rgba(0,0,0,0.25)]
-                        text-lg text-white/90
+                        text-xl md:text-2xl text-white/90 font-bold
                       "
                     />
                     <InputOTPSlot
                       index={2}
                       className="
-                        w-14 h-14 rounded-full
+                        w-16 h-16 md:w-20 md:h-20 rounded-full
                         bg-white/20 backdrop-blur-xl
                         border border-white/40 ring-1 ring-white/40
                         focus:ring-2 focus:ring-emerald-300/80
                         shadow-[inset_0_1px_2px_rgba(255,255,255,0.6),0_4px_12px_rgba(0,0,0,0.25)]
-                        text-lg text-white/90
+                        text-xl md:text-2xl text-white/90 font-bold
                       "
                     />
                     <InputOTPSlot
                       index={3}
                       className="
-                        w-14 h-14 rounded-full
+                        w-16 h-16 md:w-20 md:h-20 rounded-full
                         bg-white/20 backdrop-blur-xl
                         border border-white/40 ring-1 ring-white/40
                         focus:ring-2 focus:ring-emerald-300/80
                         shadow-[inset_0_1px_2px_rgba(255,255,255,0.6),0_4px_12px_rgba(0,0,0,0.25)]
-                        text-lg text-white/90
-                      "
-                    />
-                    <InputOTPSlot
-                      index={4}
-                      className="
-                        w-14 h-14 rounded-full
-                        bg-white/20 backdrop-blur-xl
-                        border border-white/40 ring-1 ring-white/40
-                        focus:ring-2 focus:ring-emerald-300/80
-                        shadow-[inset_0_1px_2px_rgba(255,255,255,0.6),0_4px_12px_rgba(0,0,0,0.25)]
-                        text-lg text-white/90
-                      "
-                    />
-                    <InputOTPSlot
-                      index={5}
-                      className="
-                        w-14 h-14 rounded-full
-                        bg-white/20 backdrop-blur-xl
-                        border border-white/40 ring-1 ring-white/40
-                        focus:ring-2 focus:ring-emerald-300/80
-                        shadow-[inset_0_1px_2px_rgba(255,255,255,0.6),0_4px_12px_rgba(0,0,0,0.25)]
-                        text-lg text-white/90
+                        text-xl md:text-2xl text-white/90 font-bold
                       "
                     />
                   </InputOTPGroup>
                 </InputOTP>
               </div>
             </div>
-
-            {/* Submit Button with vibrant glossy gradient */}
-            <Button
-              type="submit"
-              size="lg"
-              disabled={code.length !== 6}
-              className="
-                w-full relative rounded-full px-6 py-5 text-base font-extrabold
-                text-slate-900
-                bg-gradient-to-r from-pink-300 via-amber-200 to-cyan-300
-                border border-white/40
-                shadow-[0_8px_24px_rgba(16,24,40,0.45)]
-                hover:shadow-[0_12px_28px_rgba(16,24,40,0.55)]
-                transition
-                before:content-[''] before:absolute before:inset-0 before:rounded-full
-                before:bg-[linear-gradient(to_bottom,rgba(255,255,255,0.65),rgba(255,255,255,0.08))]
-                before:pointer-events-none
-                disabled:opacity-50 disabled:cursor-not-allowed
-              "
-            >
-              Enter
-            </Button>
           </form>
         </div>
+      </div>
+
+      {/* Candy-Colored Button at Bottom */}
+      <div className="relative z-10 px-6 pb-8 md:pb-12">
+        <Button
+          type="submit"
+          size="lg"
+          disabled={code.length !== 4}
+          onClick={handleSubmit}
+          className="
+            w-full relative rounded-full px-8 py-6 text-lg md:text-xl font-extrabold
+            text-white
+            bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-500
+            border-2 border-white/50
+            shadow-[0_10px_30px_rgba(236,72,153,0.5)]
+            hover:shadow-[0_15px_40px_rgba(236,72,153,0.7)]
+            hover:scale-105
+            transition-all duration-300
+            before:content-[''] before:absolute before:inset-0 before:rounded-full
+            before:bg-[linear-gradient(to_bottom,rgba(255,255,255,0.4),rgba(255,255,255,0))]
+            before:pointer-events-none
+            disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100
+          "
+        >
+          Enter The Candy Kitchen
+        </Button>
       </div>
     </section>
   );
