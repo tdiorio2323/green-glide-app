@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a React + TypeScript + Vite project called "Green Glide" (branded as CABANA Cannabis Marketplace), a cannabis marketplace web application built with shadcn/ui components and Tailwind CSS. The project is managed via Lovable.dev and follows a single-page application (SPA) architecture.
+This is a React + TypeScript + Vite project originally called "Green Glide", now rebranded as **CABANA Cannabis Marketplace** (also referred to as "The Candy Kitchen"). It's a cannabis marketplace web application built with shadcn/ui components and Tailwind CSS. The project is managed via Lovable.dev and follows a single-page application (SPA) architecture.
 
 ## Development Commands
 
@@ -44,11 +44,12 @@ npm run preview
 
 ```
 src/
-├── components/        # Feature components (Hero, Footer, etc.)
+├── components/        # Feature components (Hero, Footer, ExploreMenus, etc.)
 │   └── ui/           # shadcn/ui components (auto-generated)
-├── pages/            # Route pages (Index, NotFound)
+├── pages/            # Route pages (Index, Dashboard, NotFound, RoutesDebug)
 ├── hooks/            # Custom React hooks (use-mobile, use-toast)
 ├── lib/              # Utilities (utils.ts for cn() helper)
+├── data/             # Static data (products, categories)
 └── assets/           # Static assets
 ```
 
@@ -78,6 +79,7 @@ The project uses a **CABANA tropical/holographic cannabis marketplace** design s
 - **Port**: Dev server runs on `:8080` with IPv6 host (`::`)
 - **UI Components**: Generated via shadcn/ui CLI (see `components.json`)
 - **Form Validation**: Uses `react-hook-form` + `@hookform/resolvers` + `zod`
+- **TypeScript**: Configured with relaxed strictness settings (`noImplicitAny: false`, `strictNullChecks: false`) for rapid development
 
 ### Adding New Routes
 

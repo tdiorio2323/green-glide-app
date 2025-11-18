@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button } from "@/components/ui/button";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
 import heroImage from "@/assets/candy-kitchen-hero.png";
 
@@ -114,28 +113,28 @@ export default function Hero() {
 
       {/* Candy-Colored Button at Bottom */}
       <div className="relative z-10 px-6 pb-8 md:pb-12">
-        <Button
+        <button
           type="submit"
-          size="lg"
           disabled={code.length !== 4}
           onClick={handleSubmit}
           className="
-            w-full relative rounded-full px-8 py-6 text-lg md:text-xl font-extrabold
-            text-white
-            bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-500
-            border-2 border-white/50
-            shadow-[0_10px_30px_rgba(236,72,153,0.5)]
-            hover:shadow-[0_15px_40px_rgba(236,72,153,0.7)]
-            hover:scale-105
-            transition-all duration-300
+            w-full relative h-16 px-12
+            rounded-full
+            text-white text-lg md:text-xl font-bold uppercase tracking-wide
+            bg-gradient-to-r from-[#FFC93B] via-[#FF4B4B] via-[#00A3FF] to-[#3CC65A]
+            shadow-[0_10px_30px_rgba(0,0,0,0.3)]
+            hover:scale-105 hover:shadow-[0_15px_40px_rgba(255,201,59,0.6)]
+            active:scale-95
+            transition-all duration-300 ease-out
+            cursor-pointer
             before:content-[''] before:absolute before:inset-0 before:rounded-full
-            before:bg-[linear-gradient(to_bottom,rgba(255,255,255,0.4),rgba(255,255,255,0))]
+            before:bg-gradient-to-b before:from-white/30 before:to-transparent
             before:pointer-events-none
-            disabled:cursor-not-allowed disabled:hover:scale-100
+            disabled:cursor-not-allowed disabled:hover:scale-100 disabled:opacity-50
           "
         >
           Enter The Candy Kitchen
-        </Button>
+        </button>
       </div>
     </section>
   );
