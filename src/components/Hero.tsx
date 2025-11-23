@@ -254,7 +254,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative h-screen flex flex-col overflow-hidden">
+    <section className="relative min-h-screen h-screen flex flex-col overflow-hidden">
       {/* Full-Screen Background */}
       <div className="absolute inset-0">
         <img
@@ -269,31 +269,28 @@ export default function Hero() {
       </div>
 
       {/* Centered Logo with breathing animation */}
-      <div className="relative z-10 flex items-center justify-center" style={{ height: '60vh' }}>
+      <div className="relative z-10 flex items-center justify-center flex-1 pt-safe pb-4">
         <img
           src="/td-studios-xmas-logo.png"
           alt="TD STUDIOS"
-          className="h-64 md:h-80 w-auto drop-shadow-2xl animate-[breathe_3s_ease-in-out_infinite] select-none"
+          className="h-32 sm:h-48 md:h-64 lg:h-80 w-auto max-w-[90vw] drop-shadow-2xl animate-[breathe_3s_ease-in-out_infinite] select-none"
           draggable="false"
           onContextMenu={(e) => e.preventDefault()}
         />
       </div>
 
-      {/* Spacer */}
-      <div className="flex-1"></div>
-
       {/* Access Code Interface */}
       {view === "entry" && (
-        <div className="relative z-10 px-6 pb-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+        <div className="relative z-10 px-4 sm:px-6 pb-safe pb-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
           <div className="w-full max-w-md mx-auto">
-            <form onSubmit={handleCodeSubmit} className="space-y-6">
-              <div className="text-center space-y-6">
-                <h2 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-red-600 via-white to-green-600 bg-clip-text text-transparent drop-shadow-lg">
+            <form onSubmit={handleCodeSubmit} className="space-y-4 sm:space-y-6">
+              <div className="text-center space-y-4 sm:space-y-6">
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r from-red-600 via-white to-green-600 bg-clip-text text-transparent drop-shadow-lg px-4">
                   Enter Access Code
                 </h2>
 
                 <div className="flex flex-col items-center gap-4">
-                  <div className="relative">
+                  <div className="relative flex items-center gap-2">
                     <InputOTP
                       maxLength={4}
                       value={code}
@@ -301,11 +298,11 @@ export default function Hero() {
                       className="gap-2"
                       disabled={loading}
                     >
-                      <InputOTPGroup className="gap-3">
+                      <InputOTPGroup className="gap-2 sm:gap-3">
                         <InputOTPSlot
                           index={0}
                           className={cn(
-                            "w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/20 backdrop-blur-xl border border-white/40 ring-1 ring-white/40 focus:ring-2 shadow-[inset_0_1px_2px_rgba(255,255,255,0.6),0_4px_12px_rgba(0,0,0,0.25)] text-xl md:text-2xl text-white/90 font-bold transition-all duration-200",
+                            "w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full bg-white/20 backdrop-blur-xl border border-white/40 ring-1 ring-white/40 focus:ring-2 shadow-[inset_0_1px_2px_rgba(255,255,255,0.6),0_4px_12px_rgba(0,0,0,0.25)] text-lg sm:text-xl md:text-2xl text-white/90 font-bold transition-all duration-200",
                             codeValidated && "border-green-400 ring-green-400 focus:ring-green-400/80",
                             codeError && code.length === 4 && "border-red-400 ring-red-400 focus:ring-red-400/80"
                           )}
@@ -313,7 +310,7 @@ export default function Hero() {
                         <InputOTPSlot
                           index={1}
                           className={cn(
-                            "w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/20 backdrop-blur-xl border border-white/40 ring-1 ring-white/40 focus:ring-2 shadow-[inset_0_1px_2px_rgba(255,255,255,0.6),0_4px_12px_rgba(0,0,0,0.25)] text-xl md:text-2xl text-white/90 font-bold transition-all duration-200",
+                            "w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full bg-white/20 backdrop-blur-xl border border-white/40 ring-1 ring-white/40 focus:ring-2 shadow-[inset_0_1px_2px_rgba(255,255,255,0.6),0_4px_12px_rgba(0,0,0,0.25)] text-lg sm:text-xl md:text-2xl text-white/90 font-bold transition-all duration-200",
                             codeValidated && "border-green-400 ring-green-400 focus:ring-green-400/80",
                             codeError && code.length === 4 && "border-red-400 ring-red-400 focus:ring-red-400/80"
                           )}
@@ -321,7 +318,7 @@ export default function Hero() {
                         <InputOTPSlot
                           index={2}
                           className={cn(
-                            "w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/20 backdrop-blur-xl border border-white/40 ring-1 ring-white/40 focus:ring-2 shadow-[inset_0_1px_2px_rgba(255,255,255,0.6),0_4px_12px_rgba(0,0,0,0.25)] text-xl md:text-2xl text-white/90 font-bold transition-all duration-200",
+                            "w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full bg-white/20 backdrop-blur-xl border border-white/40 ring-1 ring-white/40 focus:ring-2 shadow-[inset_0_1px_2px_rgba(255,255,255,0.6),0_4px_12px_rgba(0,0,0,0.25)] text-lg sm:text-xl md:text-2xl text-white/90 font-bold transition-all duration-200",
                             codeValidated && "border-green-400 ring-green-400 focus:ring-green-400/80",
                             codeError && code.length === 4 && "border-red-400 ring-red-400 focus:ring-red-400/80"
                           )}
@@ -329,7 +326,7 @@ export default function Hero() {
                         <InputOTPSlot
                           index={3}
                           className={cn(
-                            "w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/20 backdrop-blur-xl border border-white/40 ring-1 ring-white/40 focus:ring-2 shadow-[inset_0_1px_2px_rgba(255,255,255,0.6),0_4px_12px_rgba(0,0,0,0.25)] text-xl md:text-2xl text-white/90 font-bold transition-all duration-200",
+                            "w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full bg-white/20 backdrop-blur-xl border border-white/40 ring-1 ring-white/40 focus:ring-2 shadow-[inset_0_1px_2px_rgba(255,255,255,0.6),0_4px_12px_rgba(0,0,0,0.25)] text-lg sm:text-xl md:text-2xl text-white/90 font-bold transition-all duration-200",
                             codeValidated && "border-green-400 ring-green-400 focus:ring-green-400/80",
                             codeError && code.length === 4 && "border-red-400 ring-red-400 focus:ring-red-400/80"
                           )}
@@ -337,8 +334,8 @@ export default function Hero() {
                       </InputOTPGroup>
                     </InputOTP>
                     {codeValidated && (
-                      <div className="absolute -right-12 top-1/2 -translate-y-1/2 animate-in zoom-in duration-300">
-                        <CheckCircle2 className="h-8 w-8 text-green-400" aria-label="Valid code" />
+                      <div className="animate-in zoom-in duration-300 ml-1">
+                        <CheckCircle2 className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 text-green-400" aria-label="Valid code" />
                       </div>
                     )}
                   </div>
@@ -359,10 +356,10 @@ export default function Hero() {
 
       {/* Signup Form */}
       {view === "signup" && (
-        <div className="relative z-10 px-6 pb-6 max-h-[50vh] overflow-y-auto animate-in fade-in slide-in-from-bottom-4 duration-500">
+        <div className="relative z-10 px-4 sm:px-6 pb-safe pb-4 sm:pb-6 max-h-[60vh] sm:max-h-[55vh] overflow-y-auto animate-in fade-in slide-in-from-bottom-4 duration-500">
           <div className="w-full max-w-md mx-auto">
-            <form onSubmit={handleSignup} className="space-y-4 bg-black/40 backdrop-blur-md p-6 rounded-3xl border border-white/20">
-              <h2 className="text-2xl font-bold text-center bg-gradient-to-r from-red-600 via-white to-green-600 bg-clip-text text-transparent">
+            <form onSubmit={handleSignup} className="space-y-3 sm:space-y-4 bg-black/40 backdrop-blur-md p-4 sm:p-6 rounded-2xl sm:rounded-3xl border border-white/20">
+              <h2 className="text-xl sm:text-2xl font-bold text-center bg-gradient-to-r from-red-600 via-white to-green-600 bg-clip-text text-transparent">
                 Create Your Profile
               </h2>
 
@@ -480,10 +477,10 @@ export default function Hero() {
 
       {/* Login Form */}
       {view === "login" && (
-        <div className="relative z-10 px-6 pb-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+        <div className="relative z-10 px-4 sm:px-6 pb-safe pb-4 sm:pb-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
           <div className="w-full max-w-md mx-auto">
-            <form onSubmit={handleLogin} className="space-y-4 bg-black/40 backdrop-blur-md p-6 rounded-3xl border border-white/20">
-              <h2 className="text-2xl font-bold text-center bg-gradient-to-r from-red-600 via-white to-green-600 bg-clip-text text-transparent">
+            <form onSubmit={handleLogin} className="space-y-3 sm:space-y-4 bg-black/40 backdrop-blur-md p-4 sm:p-6 rounded-2xl sm:rounded-3xl border border-white/20">
+              <h2 className="text-xl sm:text-2xl font-bold text-center bg-gradient-to-r from-red-600 via-white to-green-600 bg-clip-text text-transparent">
                 Welcome Back
               </h2>
 
@@ -529,7 +526,7 @@ export default function Hero() {
       )}
 
       {/* Action Button */}
-      <div className="relative z-10 px-6 pb-8 md:pb-12">
+      <div className="relative z-10 px-4 sm:px-6 pb-safe pb-6 sm:pb-8 md:pb-12">
         <LoadingButton
           type="button"
           loading={loading}
@@ -540,9 +537,9 @@ export default function Hero() {
           }
           onClick={view === "entry" ? handleCodeSubmit : view === "signup" ? handleSignup : handleLogin}
           className="
-            w-full relative h-16 px-12
+            w-full relative h-14 sm:h-16 px-8 sm:px-12
             rounded-full
-            text-white text-lg md:text-xl font-bold uppercase tracking-wide
+            text-white text-base sm:text-lg md:text-xl font-bold uppercase tracking-wide
             bg-gradient-to-r from-red-600 via-white via-green-600 to-red-600
             shadow-[0_10px_30px_rgba(0,0,0,0.3)]
             hover:scale-105 hover:shadow-[0_15px_40px_rgba(220,38,38,0.6)]
