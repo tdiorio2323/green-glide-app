@@ -1,67 +1,66 @@
 export default [
-    // Flower - Candy/Cereal Hybrids
-    { id: 1, name: "GLIZZYMOD Lucky Charms 3.5g", image: "/candy-kitchen-logo.png", price: 45, category: "flower" },
-    { id: 2, name: "Big Mama Frosted Flakes Strawberry Shortcake 3.5g", image: "/candy-kitchen-logo.png", price: 50, category: "flower" },
-    { id: 3, name: "STFIP4KAIL Pop-Tarts Skittles 3.5g", image: "/candy-kitchen-logo.png", price: 48, category: "flower" },
-    { id: 21, name: "WEEZY Limited Edition Sour Patch Kids Pop-Tarts 3.5g", image: "/candy-kitchen-logo.png", price: 55, category: "flower" },
-    { id: 22, name: "Little Debbie Lucky Charms 3.5g", image: "/candy-kitchen-logo.png", price: 45, category: "flower" },
-    { id: 23, name: "Z0E4 Wow Pudding Brookside Sour Patch Mix 3.5g", image: "/candy-kitchen-logo.png", price: 52, category: "flower" },
-    { id: 24, name: "DO$KIS Bubblegum Pop-Tarts 3.5g", image: "/candy-kitchen-logo.png", price: 48, category: "flower" },
-    { id: 25, name: "20-Flavor Motion Aggs Hershey Strawberry-Banana Pudding 3.5g", image: "/candy-kitchen-logo.png", price: 55, category: "flower" },
+    // Holiday Designs
+    { id: 1, name: "Apple Jacks Santa (3.5g)", image: "/categories/Holiday/APPLE-JACKS-SANTA.jpg", price: 45, category: "pre-packaged-flower" },
+    { id: 2, name: "Candied Yams (3.5g)", image: "/categories/Holiday/candied-yams.jpg", price: 45, category: "pre-packaged-flower" },
+    { id: 3, name: "Candy Cane (3.5g)", image: "/categories/Holiday/CANDY CANE.jpg", price: 45, category: "pre-packaged-flower" },
+    { id: 4, name: "Candy Cane Cookies (3.5g)", image: "/categories/Holiday/Candy-Cane-Cookies-New.jpg", price: 45, category: "pre-packaged-flower" },
+    { id: 5, name: "Christmas Cookies Turtles (3.5g)", image: "/categories/Holiday/christmas-cookies-turtles.jpg", price: 45, category: "pre-packaged-flower" },
+    { id: 6, name: "Christmas Tree (3.5g)", image: "/categories/Holiday/christmas-tree.jpg", price: 45, category: "pre-packaged-flower" },
+    { id: 7, name: "Cinnamon Toast Crunch Xmas (3.5g)", image: "/categories/Holiday/cinnamon toast crunch xmas.png", price: 45, category: "pre-packaged-flower" },
+    { id: 8, name: "Classic Sugar Cookies (3.5g)", image: "/categories/Holiday/classic-sugar-cookies-fina.jpg", price: 45, category: "pre-packaged-flower" },
+    { id: 9, name: "Egg Nog (3.5g)", image: "/categories/Holiday/EGG NOG.jpg", price: 45, category: "pre-packaged-flower" },
+    { id: 10, name: "Fruity Pebbles Santa (3.5g)", image: "/categories/Holiday/FRUITY-PEBBLES-SANTA.jpg", price: 45, category: "pre-packaged-flower" },
+    { id: 11, name: "Gingerbread (3.5g)", image: "/categories/Holiday/GINGERBREAD.png", price: 45, category: "pre-packaged-flower" },
+    { id: 12, name: "Gremlinz Xmas (3.5g)", image: "/categories/Holiday/GREMLINZ XMAS.jpg", price: 45, category: "pre-packaged-flower" },
+    { id: 13, name: "Horchata (3.5g)", image: "/categories/Holiday/HORCHATA.jpg", price: 45, category: "pre-packaged-flower" },
+    { id: 14, name: "Noel Xmas Story (3.5g)", image: "/categories/Holiday/noel-xmas-story.jpg", price: 45, category: "pre-packaged-flower" },
+    { id: 15, name: "Peppermint Candy (3.5g)", image: "/categories/Holiday/peppermint-candy.jpg", price: 45, category: "pre-packaged-flower" },
+    { id: 16, name: "Reindeer (3.5g)", image: "/categories/Holiday/reindeer.jpg", price: 45, category: "pre-packaged-flower" },
+    { id: 17, name: "Rum Cake (3.5g)", image: "/categories/Holiday/rum-cake.jpg", price: 45, category: "pre-packaged-flower" },
+    { id: 18, name: "Santa Belly (3.5g)", image: "/categories/Holiday/santa-belly.jpg", price: 45, category: "pre-packaged-flower" },
+    { id: 19, name: "Santa (3.5g)", image: "/categories/Holiday/santa.jpg", price: 45, category: "pre-packaged-flower" },
+    { id: 20, name: "Snickerdoodles Red (3.5g)", image: "/categories/Holiday/snickerdoodles-red.jpg", price: 45, category: "pre-packaged-flower" },
+    { id: 21, name: "Snickerdoodles Xmas (3.5g)", image: "/categories/Holiday/snickerdoodles-xmas.jpg", price: 45, category: "pre-packaged-flower" },
+    { id: 22, name: "Snickerdoodles (3.5g)", image: "/categories/Holiday/snickerdoodles.jpg", price: 45, category: "pre-packaged-flower" },
+    { id: 23, name: "Snowman (3.5g)", image: "/categories/Holiday/snowman.jpg", price: 45, category: "pre-packaged-flower" },
+    { id: 24, name: "Snowman PNG (3.5g)", image: "/categories/Holiday/SNOWMAN.png", price: 45, category: "pre-packaged-flower" },
+    { id: 25, name: "Sweet Potato Pie (3.5g)", image: "/categories/Holiday/sweet-potato-pie.jpg", price: 45, category: "pre-packaged-flower" },
+    { id: 26, name: "Sweet Potato Pie Alt (3.5g)", image: "/categories/Holiday/sweetpotatopie.jpg", price: 45, category: "pre-packaged-flower" },
+    { id: 27, name: "Trix Santa (3.5g)", image: "/categories/Holiday/TRIX-SANTA.jpg", price: 45, category: "pre-packaged-flower" },
 
-    // Flower - Chocolate/Cookie Spins
-    { id: 26, name: "KLLAKAL Limited Edition TWIX Mint 3.5g", image: "/candy-kitchen-logo.png", price: 50, category: "flower" },
-    { id: 27, name: "OREO Lemon Italian Ice 3.5g", image: "/candy-kitchen-logo.png", price: 48, category: "flower" },
-    { id: 28, name: "OREO Butterfinger Nestle MoneyMade 3.5g", image: "/candy-kitchen-logo.png", price: 52, category: "flower" },
-    { id: 29, name: "OREO BHUBBZ ZATXS 3.5g", image: "/candy-kitchen-logo.png", price: 48, category: "flower" },
-    { id: 30, name: "OREO Pancakes Syrup Baby Hothead 3.5g", image: "/candy-kitchen-logo.png", price: 50, category: "flower" },
-    { id: 31, name: "KLLAKAL Hey Arnold Oreo 3.5g", image: "/candy-kitchen-logo.png", price: 48, category: "flower" },
+    // Candy
+    { id: 100, name: "Candy (3.5g)", image: "/categories/CANDY/1.jpg", price: 45, category: "candy" },
+    { id: 101, name: "Candy Special (3.5g)", image: "/categories/CANDY/10.jpg", price: 45, category: "candy" },
+    { id: 102, name: "Candy Premium (3.5g)", image: "/categories/CANDY/11.jpg", price: 45, category: "candy" },
+    { id: 103, name: "Candy Select (3.5g)", image: "/categories/CANDY/6.jpg", price: 45, category: "candy" },
+    { id: 104, name: "Candy Elite (3.5g)", image: "/categories/CANDY/9.jpg", price: 45, category: "candy" },
+    { id: 105, name: "Candy Crush (3.5g)", image: "/categories/CANDY/CANDY-CRUSH.png", price: 45, category: "candy" },
+    { id: 106, name: "Goobers (3.5g)", image: "/categories/CANDY/GOOBERS.jpg", price: 45, category: "candy" },
+    { id: 107, name: "Net Weight Special (3.5g)", image: "/categories/CANDY/NET WEIGHT 3.5G (9).jpg", price: 45, category: "candy" },
+    { id: 108, name: "Nightmare Candy (3.5g)", image: "/categories/CANDY/NIGHTMARE CANDY.jpg", price: 45, category: "candy" },
+    { id: 109, name: "Spree Freeze Dried (3.5g)", image: "/categories/CANDY/spree-freeze-dried.jpg", price: 45, category: "candy" },
+    { id: 110, name: "Spree Regular (3.5g)", image: "/categories/CANDY/spree-regular.jpg", price: 45, category: "candy" },
 
-    // Flower - Fruit/Drink Flavors
-    { id: 32, name: "CAARY Aint Got Shit 3.5g", image: "/candy-kitchen-logo.png", price: 45, category: "flower" },
-    { id: 33, name: "Starburst Minis Big-Chop Strawberries Cream 3.5g", image: "/candy-kitchen-logo.png", price: 50, category: "flower" },
-    { id: 34, name: "Exotic Candyfarms Pink Cotton Candy Piggy-O 3.5g", image: "/candy-kitchen-logo.png", price: 55, category: "flower" },
-    { id: 35, name: "Skittles Darkside Share-Size 3.5g", image: "/candy-kitchen-logo.png", price: 48, category: "flower" },
+    // Character
+    { id: 200, name: "Character (3.5g)", image: "/categories/characters/11.jpg", price: 45, category: "character" },
+    { id: 201, name: "Character Select (3.5g)", image: "/categories/characters/12.jpg", price: 45, category: "character" },
+    { id: 202, name: "Character Premium (3.5g)", image: "/categories/characters/3.jpg", price: 45, category: "character" },
+    { id: 203, name: "Character Elite (3.5g)", image: "/categories/characters/5 2.jpg", price: 45, category: "character" },
+    { id: 204, name: "Character Special (3.5g)", image: "/categories/characters/5.jpg", price: 45, category: "character" },
+    { id: 205, name: "Character Pro (3.5g)", image: "/categories/characters/6.jpg", price: 45, category: "character" },
+    { id: 206, name: "Character Ultra (3.5g)", image: "/categories/characters/7.jpg", price: 45, category: "character" },
+    { id: 207, name: "Character Max (3.5g)", image: "/categories/characters/8.jpg", price: 45, category: "character" },
+    { id: 208, name: "Super Mario Cart (3.5g)", image: "/categories/characters/super-mario-cart.jpg", price: 45, category: "character" },
 
-    // Flower - Salty Twist
-    { id: 36, name: "Lays x Dirt Cake DOOSKTS 3.5g", image: "/candy-kitchen-logo.png", price: 50, category: "flower" },
-
-    // Edibles - Cookies
-    { id: 7, name: "500mg Birthday Cake Cookie", image: "/candy-kitchen-logo.png", price: 55, category: "edibles" },
-
-    // Edibles - Brownies
-    { id: 9, name: "Double Fudge Brownie (100mg)", image: "/candy-kitchen-logo.png", price: 30, category: "edibles" },
-
-    // Edibles - Beverages
-    { id: 17, name: "Blue Raspberry Lemonade", image: "/candy-kitchen-logo.png", price: 15, category: "edibles" },
-    { id: 18, name: "Yellow Lemonade", image: "/candy-kitchen-logo.png", price: 12, category: "edibles" },
-    { id: 19, name: "Pound Town Pink Lemonade", image: "/candy-kitchen-logo.png", price: 18, category: "edibles" },
-
-    // Pre-Packaged Flower
-    { id: 37, name: "Belgium Waffle (3.5g)", image: "/pre-packaged-flower/BELGIUM-WAFFLE.png", price: 45, category: "pre-packaged-flower" },
-    { id: 38, name: "Bowser (3.5g)", image: "/pre-packaged-flower/BOWSER.png", price: 45, category: "pre-packaged-flower" },
-    { id: 39, name: "Crunch Berries (3.5g)", image: "/pre-packaged-flower/CRUNCH-BERRIES.jpeg", price: 45, category: "pre-packaged-flower" },
-    { id: 40, name: "Donkey Kong (3.5g)", image: "/pre-packaged-flower/DONKEY-KONG.png", price: 45, category: "pre-packaged-flower" },
-    { id: 41, name: "Luigi (3.5g)", image: "/pre-packaged-flower/LUIGI.png", price: 45, category: "pre-packaged-flower" },
-    { id: 52, name: "Now And Later (3.5g)", image: "/pre-packaged-flower/NOW-AND-LATER.jpg", price: 45, category: "pre-packaged-flower" },
-    { id: 53, name: "Princess Peach (3.5g)", image: "/pre-packaged-flower/PRINCESS-PEACH.jpg", price: 45, category: "pre-packaged-flower" },
-    { id: 54, name: "Santa Belly (3.5g)", image: "/pre-packaged-flower/SANTA-BELLY.jpg", price: 45, category: "pre-packaged-flower" },
-    { id: 55, name: "Sour Bubble Gum (3.5g)", image: "/pre-packaged-flower/SOUR-BUBBLE-GUM.png", price: 45, category: "pre-packaged-flower" },
-    { id: 56, name: "Super Mario (3.5g)", image: "/pre-packaged-flower/SUPER-MARIO.png", price: 45, category: "pre-packaged-flower" },
-    { id: 57, name: "Vanilla Milkshake (3.5g)", image: "/pre-packaged-flower/VANILLA-MILKSHAKE.png", price: 45, category: "pre-packaged-flower" },
-    { id: 58, name: "Yoshi (3.5g)", image: "/pre-packaged-flower/YOSHI.png", price: 45, category: "pre-packaged-flower" },
-
-    // Concentrates
-    { id: 42, name: "Live Resin Sugar - Tropicana Cookies 1g", image: "/candy-kitchen-logo.png", price: 35, category: "concentrates" },
-    { id: 43, name: "Shatter - OG Kush 1g", image: "/candy-kitchen-logo.png", price: 30, category: "concentrates" },
-    { id: 44, name: "Diamond Sauce - Wedding Cake 1g", image: "/candy-kitchen-logo.png", price: 45, category: "concentrates" },
-    { id: 45, name: "Live Rosin - Ice Cream Cake 0.5g", image: "/candy-kitchen-logo.png", price: 40, category: "concentrates" },
-    { id: 46, name: "Budder - Sunset Sherbet 1g", image: "/candy-kitchen-logo.png", price: 32, category: "concentrates" },
-
-    // Disposables
-    { id: 47, name: "Sativa Disposable Vape - Sour Diesel 1g", image: "/candy-kitchen-logo.png", price: 25, category: "disposables" },
-    { id: 48, name: "Indica Disposable Vape - Granddaddy Purple 1g", image: "/candy-kitchen-logo.png", price: 25, category: "disposables" },
-    { id: 49, name: "Hybrid Disposable Vape - Blue Dream 1g", image: "/candy-kitchen-logo.png", price: 25, category: "disposables" },
-    { id: 50, name: "Live Resin Disposable - Gelato 0.5g", image: "/candy-kitchen-logo.png", price: 30, category: "disposables" },
-    { id: 51, name: "CBD Disposable Vape - Harlequin 1g", image: "/candy-kitchen-logo.png", price: 20, category: "disposables" },
+    // MISC
+    { id: 300, name: "MISC (3.5g)", image: "/categories/misc/10.jpg", price: 45, category: "misc" },
+    { id: 301, name: "MISC Select (3.5g)", image: "/categories/misc/13.jpg", price: 45, category: "misc" },
+    { id: 302, name: "MISC Premium (3.5g)", image: "/categories/misc/14.jpg", price: 45, category: "misc" },
+    { id: 303, name: "MISC Special (3.5g)", image: "/categories/misc/9.jpg", price: 45, category: "misc" },
+    { id: 304, name: "Blueberry Gushers (3.5g)", image: "/categories/misc/Blueberry-Gushers.png", price: 45, category: "misc" },
+    { id: 305, name: "Kit Kat Birthday (3.5g)", image: "/categories/misc/kit-kat-bday.png", price: 45, category: "misc" },
+    { id: 306, name: "Monkey Bread (3.5g)", image: "/categories/misc/monkeybread-final.png", price: 45, category: "misc" },
+    { id: 307, name: "Operation Pain (3.5g)", image: "/categories/misc/OPERATION PAIN.jpeg", price: 45, category: "misc" },
+    { id: 308, name: "Strawberry Gushers (3.5g)", image: "/categories/misc/straw-gush.png", price: 45, category: "misc" },
+    { id: 309, name: "Strawberry Shortcake (3.5g)", image: "/categories/misc/strawberryshortcake.jpg", price: 45, category: "misc" },
 ];

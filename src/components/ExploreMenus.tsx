@@ -111,7 +111,7 @@ export default function ExploreMenus() {
             className="text-4xl md:text-5xl font-bold mb-6 text-foreground"
             style={{ WebkitTextStroke: '2px rgba(255, 255, 255, 0.8)' }}
           >
-            The Candy Kitchen Best Sellers
+            TD STUDIOS Best Sellers
           </h2>
           <p className="text-xl text-white max-w-2xl mx-auto drop-shadow-lg">
             Our most popular pre-packaged flower. Lab-tested, premium quality cannabis
@@ -130,7 +130,9 @@ export default function ExploreMenus() {
                 <img
                   src={brand.image}
                   alt={brand.name}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-smooth"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-smooth select-none"
+                  draggable="false"
+                  onContextMenu={(e) => e.preventDefault()}
                 />
                 <Badge className="absolute top-3 right-3 bg-accent text-accent-foreground">
                   {brand.badge}

@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a React + TypeScript + Vite project originally called "Green Glide", now rebranded as **CABANA Cannabis Marketplace** (also referred to as "The Candy Kitchen"). It's a cannabis marketplace web application built with shadcn/ui components and Tailwind CSS. The project is managed via Lovable.dev and follows a single-page application (SPA) architecture.
+This is a React + TypeScript + Vite project originally called "Green Glide", now rebranded as **TD STUDIOS**. It's a cannabis marketplace web application built with shadcn/ui components and Tailwind CSS. The project is managed via Lovable.dev and follows a single-page application (SPA) architecture.
 
 ## Development Commands
 
@@ -129,3 +129,53 @@ Note: The `private` flag is for organizational purposes (e.g., routes requiring 
 - `/dashboard` - Main storefront (marked as private)
 - `/_routes` - Routes debug page for development
 - `*` - 404 Not Found page
+
+## Common Tasks
+
+### Add a New Page/Route
+
+1. Create a new file in `src/pages/` (must be a default export)
+2. Wrap the content in `<Page title="..." description="...">...</Page>` from `@/components/layout/Page`
+3. Register the path + component in `src/routes.ts` (add ABOVE the catch-all "*" route)
+4. The page will automatically be wrapped in `AppLayout` from `src/layouts/AppLayout.tsx`
+
+Example:
+```tsx
+// src/pages/MyNewPage.tsx
+import { Page } from "@/components/layout/Page";
+
+export default function MyNewPage() {
+  return (
+    <Page title="My New Page" description="Page description here">
+      <div>Your content</div>
+    </Page>
+  );
+}
+
+// src/routes.ts - add this entry
+import MyNewPage from "./pages/MyNewPage";
+
+export const routes: RouteItem[] = [
+  { path: "/", component: Index, label: "Landing (OTP)" },
+  { path: "/my-new-page", component: MyNewPage, label: "My New Page" },
+  { path: "*", component: NotFound, label: "Not Found" }, // Keep last
+];
+```
+
+### Use TD STUDIOS Theme Tokens
+
+For Christmas/luxury holographic styling on cards or featured elements:
+
+```tsx
+import { cn } from "@/lib/utils";
+import { tds } from "@/lib/theme";
+
+<div className={cn("p-4 rounded-xl", tds.holoCard, tds.glass)}>
+  {/* Your content with red-green gradient + glass effect */}
+</div>
+```
+
+Available tokens:
+- `tds.holoCard` - Red/green holographic gradient background
+- `tds.glass` - Glass morphism backdrop blur effect
+- `tds.christmasGlow` - Christmas-themed glow shadow

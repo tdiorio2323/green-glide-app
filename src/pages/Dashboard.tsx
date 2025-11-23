@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Instagram } from "lucide-react";
+import { Instagram, Phone } from "lucide-react";
 import { categories } from "@/data/categories";
 import products from "@/data/products";
 import { Card } from "@/components/ui/card";
-import heroImage from "@/assets/candy-kitchen-hero.png";
+import { cn } from "@/lib/utils";
+import { tds } from "@/lib/theme";
+const heroImage = "/td-white.jpg";
 
 interface CartItem {
   id: number;
@@ -33,7 +35,7 @@ export default function Dashboard() {
 
   return (
     <main
-      className="min-h-screen text-white bg-cover bg-center bg-no-repeat"
+      className="min-h-screen text-white bg-cover bg-center bg-fixed"
       style={{ backgroundImage: `url(${heroImage})` }}
     >
       {/* Header */}
@@ -41,19 +43,29 @@ export default function Dashboard() {
         <div className="flex justify-between items-center max-w-7xl mx-auto">
           <Link to="/" className="flex-1 flex justify-center">
             <img
-              src="/candy-kitchen-logo.png"
-              alt="The Candy Kitchen"
-              className="h-16 w-auto drop-shadow-lg hover:opacity-90 transition cursor-pointer"
+              src="/td-studios-xmas-logo.png"
+              alt="TD STUDIOS"
+              className="h-16 w-auto drop-shadow-lg hover:opacity-90 transition cursor-pointer select-none"
+              draggable="false"
+              onContextMenu={(e) => e.preventDefault()}
             />
           </Link>
-          <a
-            href="https://www.instagram.com/thecandykitchen_213/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-white hover:text-accent transition-colors"
-          >
-            <Instagram className="h-6 w-6" />
-          </a>
+          <div className="flex gap-4 items-center">
+            <a
+              href="tel:+13474859935"
+              className="text-white hover:text-accent transition-colors"
+            >
+              <Phone className="h-6 w-6" />
+            </a>
+            <a
+              href="https://www.instagram.com/tdstudiosco"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white hover:text-accent transition-colors"
+            >
+              <Instagram className="h-6 w-6" />
+            </a>
+          </div>
         </div>
       </div>
 
@@ -82,19 +94,19 @@ export default function Dashboard() {
         {filtered.map(p => (
           <Card
             key={p.id}
-            className="
-              flex items-center gap-4 p-4
-              rounded-3xl
-              bg-white/6 backdrop-blur-2xl
-              ring-1 ring-white/10 hover:ring-white/20
-              shadow-[0_10px_30px_rgba(0,0,0,0.35)]
-              transition
-            "
+            className={cn(
+              "flex items-center gap-4 p-4 rounded-3xl transition hover:-translate-y-1",
+              tds.holoCard,
+              tds.glass,
+              "ring-1 ring-white/10 hover:ring-white/20"
+            )}
           >
             <img
               src={p.image}
               alt={p.name}
-              className="w-16 h-16 rounded-2xl object-contain ring-1 ring-white/15 bg-black/30"
+              className="w-32 h-40 rounded-2xl object-cover ring-1 ring-white/15 bg-black/30 select-none pointer-events-none"
+              draggable="false"
+              onContextMenu={(e) => e.preventDefault()}
             />
             <div className="flex-1">
               <h3 className="font-semibold text-white/95">{p.name}</h3>

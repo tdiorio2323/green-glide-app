@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
-import heroImage from "@/assets/candy-kitchen-hero.png";
+
+const heroImage = "/td-white.jpg";
 
 export default function Hero() {
   const [code, setCode] = useState("");
@@ -22,8 +23,10 @@ export default function Hero() {
       <div className="absolute inset-0">
         <img
           src={heroImage}
-          alt="The Candy Kitchen"
-          className="w-full h-full object-cover"
+          alt="TD STUDIOS"
+          className="w-full h-full object-cover select-none"
+          draggable="false"
+          onContextMenu={(e) => e.preventDefault()}
         />
         {/* Dark gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/60" />
@@ -32,9 +35,11 @@ export default function Hero() {
       {/* Centered Logo with breathing animation */}
       <div className="relative z-10 flex items-center justify-center" style={{ height: '60vh' }}>
         <img
-          src="/candy-kitchen-logo.png"
-          alt="The Candy Kitchen"
-          className="h-64 md:h-80 w-auto drop-shadow-2xl animate-[breathe_3s_ease-in-out_infinite]"
+          src="/td-studios-xmas-logo.png"
+          alt="TD STUDIOS"
+          className="h-64 md:h-80 w-auto drop-shadow-2xl animate-[breathe_3s_ease-in-out_infinite] select-none"
+          draggable="false"
+          onContextMenu={(e) => e.preventDefault()}
         />
       </div>
 
@@ -46,7 +51,7 @@ export default function Hero() {
         <div className="w-full max-w-md mx-auto">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="text-center space-y-6">
-              <h2 className="text-2xl md:text-3xl font-bold bg-gradient-holographic bg-clip-text text-transparent drop-shadow-lg">
+              <h2 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-red-600 via-white to-green-600 bg-clip-text text-transparent drop-shadow-lg">
                 Enter Access Code
               </h2>
 
@@ -121,9 +126,9 @@ export default function Hero() {
             w-full relative h-16 px-12
             rounded-full
             text-white text-lg md:text-xl font-bold uppercase tracking-wide
-            bg-gradient-to-r from-[#FFC93B] via-[#FF4B4B] via-[#00A3FF] to-[#3CC65A]
+            bg-gradient-to-r from-red-600 via-white via-green-600 to-red-600
             shadow-[0_10px_30px_rgba(0,0,0,0.3)]
-            hover:scale-105 hover:shadow-[0_15px_40px_rgba(255,201,59,0.6)]
+            hover:scale-105 hover:shadow-[0_15px_40px_rgba(220,38,38,0.6)]
             active:scale-95
             transition-all duration-300 ease-out
             cursor-pointer
@@ -133,7 +138,7 @@ export default function Hero() {
             disabled:cursor-not-allowed disabled:hover:scale-100 disabled:opacity-50
           "
         >
-          Enter The Candy Kitchen
+          Enter TD STUDIOS
         </button>
       </div>
     </section>

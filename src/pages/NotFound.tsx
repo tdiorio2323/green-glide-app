@@ -1,5 +1,6 @@
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import { Page } from "@/components/layout/Page";
 
 const NotFound = () => {
   const location = useLocation();
@@ -12,18 +13,21 @@ const NotFound = () => {
   }, [location.pathname]);
 
   return (
-    <div
-      className="min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat"
-      style={{ backgroundImage: 'url(/candy-shop.png)' }}
-    >
-      <div className="text-center bg-card/80 backdrop-blur-sm p-8 rounded-lg border border-border">
-        <h1 className="text-4xl font-bold mb-4 bg-gradient-holographic bg-clip-text text-transparent">404</h1>
-        <p className="text-xl text-muted-foreground mb-4">Oops! Page not found</p>
-        <a href="/" className="text-primary hover:text-primary/80 underline font-semibold">
-          Return to Home
-        </a>
+    <main className="min-h-screen flex items-center justify-center p-6">
+      <div className="max-w-2xl w-full">
+        <Page title="404 - Page Not Found">
+          <div className="text-center py-8">
+            <div className="text-6xl font-bold mb-4 bg-gradient-holographic bg-clip-text text-transparent">404</div>
+            <p className="text-xl text-muted-foreground mb-6">
+              The page <code className="text-primary font-mono">{location.pathname}</code> doesn't exist
+            </p>
+            <a href="/" className="text-primary hover:text-primary/80 underline font-semibold">
+              Return to Home
+            </a>
+          </div>
+        </Page>
       </div>
-    </div>
+    </main>
   );
 };
 
