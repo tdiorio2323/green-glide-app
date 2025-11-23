@@ -1,79 +1,256 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
-import { Input } from "@/components/ui/input";
 import { auth } from "@/lib/auth";
 import { toast } from "sonner";
+import { cn } from "@/lib/utils";
+import { CheckCircle2, AlertCircle } from "lucide-react";
+import { FormField } from "@/components/auth/FormField";
+import { PINInput } from "@/components/auth/PINInput";
+import { LoadingButton } from "@/components/auth/LoadingSpinner";
+import {
+  validateUsername,
+  validatePhone,
+  validateEmail,
+  validateInstagram,
+  validateAccessCode,
+  validateContactMethods,
+} from "@/lib/validation";
 
 const heroImage = "/td-white.jpg";
+
+interface FieldState {
+  value: string;
+  error?: string;
+  touched: boolean;
+}
 
 export default function Hero() {
   const [view, setView] = useState<"entry" | "signup" | "login">("entry");
   const [code, setCode] = useState("");
-  const [username, setUsername] = useState("");
-  const [pin, setPin] = useState("");
-  const [phone, setPhone] = useState("");
-  const [email, setEmail] = useState("");
-  const [instagram, setInstagram] = useState("");
+  const [codeError, setCodeError] = useState<string>("");
+  const [codeValidated, setCodeValidated] = useState(false);
+
+  // Form states
+  const [username, setUsername] = useState<FieldState>({ value: "", touched: false });
+  const [pin, setPin] = useState<FieldState>({ value: "", touched: false });
+  const [pinConfirm, setPinConfirm] = useState<FieldState>({ value: "", touched: false });
+  const [phone, setPhone] = useState<FieldState>({ value: "", touched: false });
+  const [email, setEmail] = useState<FieldState>({ value: "", touched: false });
+  const [instagram, setInstagram] = useState<FieldState>({ value: "", touched: false });
+
   const [loading, setLoading] = useState(false);
+  const [contactError, setContactError] = useState<string>("");
   const navigate = useNavigate();
+
+  // Refs for focus management
+  const usernameRef = useRef<HTMLInputElement>(null);
+  const pinRef = useRef<HTMLInputElement>(null);
+
+  // Validate access code on change
+  useEffect(() => {
+    if (code.length === 4) {
+      const validation = validateAccessCode(code);
+      if (validation.valid) {
+        setCodeError("");
+        setCodeValidated(true);
+      } else {
+        setCodeError(validation.error || "Invalid code");
+        setCodeValidated(false);
+      }
+    } else {
+      setCodeError("");
+      setCodeValidated(false);
+    }
+  }, [code]);
+
+  // Focus management on view change
+  useEffect(() => {
+    if (view === "signup" || view === "login") {
+      setTimeout(() => usernameRef.current?.focus(), 100);
+    }
+  }, [view]);
+
+  // Real-time validation functions
+  const validateUsernameField = (value: string) => {
+    const result = validateUsername(value);
+    setUsername(prev => ({ ...prev, value, error: result.error }));
+  };
+
+  const validatePINField = (value: string) => {
+    setPin(prev => ({ ...prev, value, error: value.length === 4 ? undefined : "PIN must be 4 digits" }));
+  };
+
+  const validatePINConfirmField = (value: string) => {
+    const error = value !== pin.value && value.length === 4 ? "PINs do not match" : undefined;
+    setPinConfirm(prev => ({ ...prev, value, error }));
+  };
+
+  const validatePhoneField = (value: string) => {
+    const result = validatePhone(value);
+    setPhone(prev => ({ ...prev, value, error: result.error }));
+    if (value || email.value || instagram.value) {
+      setContactError("");
+    }
+  };
+
+  const validateEmailField = (value: string) => {
+    const result = validateEmail(value);
+    setEmail(prev => ({ ...prev, value, error: result.error }));
+    if (value || phone.value || instagram.value) {
+      setContactError("");
+    }
+  };
+
+  const validateInstagramField = (value: string) => {
+    const result = validateInstagram(value);
+    setInstagram(prev => ({ ...prev, value, error: result.error }));
+    if (value || phone.value || email.value) {
+      setContactError("");
+    }
+  };
 
   const handleCodeSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (code && code.length === 4) {
+    if (code.length === 4 && codeValidated) {
       setView("signup");
+    } else if (code.length === 4) {
+      const validation = validateAccessCode(code);
+      setCodeError(validation.error || "Invalid code");
     }
   };
 
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    if (!username || !pin) {
-      toast.error("Username and PIN are required");
+
+    // Mark all fields as touched
+    setUsername(prev => ({ ...prev, touched: true }));
+    setPin(prev => ({ ...prev, touched: true }));
+    setPinConfirm(prev => ({ ...prev, touched: true }));
+    setPhone(prev => ({ ...prev, touched: true }));
+    setEmail(prev => ({ ...prev, touched: true }));
+    setInstagram(prev => ({ ...prev, touched: true }));
+
+    // Validate all fields
+    const usernameValidation = validateUsername(username.value);
+    const contactValidation = validateContactMethods(phone.value, email.value, instagram.value);
+    const phoneValidation = validatePhone(phone.value);
+    const emailValidation = validateEmail(email.value);
+    const instagramValidation = validateInstagram(instagram.value);
+
+    if (!usernameValidation.valid) {
+      setUsername(prev => ({ ...prev, error: usernameValidation.error }));
+      toast.error(usernameValidation.error);
       return;
     }
 
-    if (!phone && !email && !instagram) {
-      toast.error("Please provide at least one contact method");
+    if (pin.value.length !== 4) {
+      setPin(prev => ({ ...prev, error: "PIN must be 4 digits" }));
+      toast.error("PIN must be 4 digits");
+      return;
+    }
+
+    if (pinConfirm.value !== pin.value) {
+      setPinConfirm(prev => ({ ...prev, error: "PINs do not match" }));
+      toast.error("PINs do not match");
+      return;
+    }
+
+    if (!contactValidation.valid) {
+      setContactError(contactValidation.error || "");
+      toast.error(contactValidation.error);
+      return;
+    }
+
+    if (!phoneValidation.valid || !emailValidation.valid || !instagramValidation.valid) {
+      toast.error("Please fix the errors in your contact information");
       return;
     }
 
     setLoading(true);
-    const result = await auth.signup({
-      username,
-      pin,
-      phone: phone || undefined,
-      email: email || undefined,
-      instagram_handle: instagram || undefined,
-    });
-    setLoading(false);
+    try {
+      const result = await auth.signup({
+        username: username.value,
+        pin: pin.value,
+        phone: phone.value || undefined,
+        email: email.value || undefined,
+        instagram_handle: instagram.value || undefined,
+      });
 
-    if (result.success) {
-      toast.success("Account created successfully!");
-      navigate("/dashboard");
-    } else {
-      toast.error(result.error || "Signup failed");
+      if (result.success) {
+        toast.success("Account created successfully!");
+        navigate("/dashboard");
+      } else {
+        // Clear sensitive fields on error
+        setPin({ value: "", touched: false, error: undefined });
+        setPinConfirm({ value: "", touched: false, error: undefined });
+        toast.error(result.error || "Signup failed. Please try again.");
+      }
+    } catch (error) {
+      // Clear sensitive fields on error
+      setPin({ value: "", touched: false, error: undefined });
+      setPinConfirm({ value: "", touched: false, error: undefined });
+      toast.error("Network error. Please check your connection and try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    if (!username || !pin) {
-      toast.error("Username and PIN are required");
+
+    // Mark fields as touched
+    setUsername(prev => ({ ...prev, touched: true }));
+    setPin(prev => ({ ...prev, touched: true }));
+
+    // Validate
+    const usernameValidation = validateUsername(username.value);
+
+    if (!usernameValidation.valid) {
+      setUsername(prev => ({ ...prev, error: usernameValidation.error }));
+      toast.error(usernameValidation.error);
+      return;
+    }
+
+    if (pin.value.length !== 4) {
+      setPin(prev => ({ ...prev, error: "PIN must be 4 digits" }));
+      toast.error("PIN must be 4 digits");
       return;
     }
 
     setLoading(true);
-    const result = await auth.login(username, pin);
-    setLoading(false);
+    try {
+      const result = await auth.login(username.value, pin.value);
 
-    if (result.success) {
-      toast.success("Welcome back!");
-      navigate("/dashboard");
-    } else {
-      toast.error(result.error || "Login failed");
+      if (result.success) {
+        toast.success("Welcome back!");
+        navigate("/dashboard");
+      } else {
+        // Clear PIN on error
+        setPin({ value: "", touched: false, error: undefined });
+        toast.error(result.error || "Invalid username or PIN");
+      }
+    } catch (error) {
+      // Clear PIN on error
+      setPin({ value: "", touched: false, error: undefined });
+      toast.error("Network error. Please check your connection and try again.");
+    } finally {
+      setLoading(false);
     }
+  };
+
+  // Handle view switching with form reset
+  const switchToSignup = () => {
+    setView("signup");
+    setUsername({ value: "", touched: false, error: undefined });
+    setPin({ value: "", touched: false, error: undefined });
+    setPinConfirm({ value: "", touched: false, error: undefined });
+  };
+
+  const switchToLogin = () => {
+    setView("login");
+    setUsername({ value: "", touched: false, error: undefined });
+    setPin({ value: "", touched: false, error: undefined });
   };
 
   return (
@@ -107,7 +284,7 @@ export default function Hero() {
 
       {/* Access Code Interface */}
       {view === "entry" && (
-        <div className="relative z-10 px-6 pb-6">
+        <div className="relative z-10 px-6 pb-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
           <div className="w-full max-w-md mx-auto">
             <form onSubmit={handleCodeSubmit} className="space-y-6">
               <div className="text-center space-y-6">
@@ -115,20 +292,64 @@ export default function Hero() {
                   Enter Access Code
                 </h2>
 
-                <div className="flex justify-center">
-                  <InputOTP
-                    maxLength={4}
-                    value={code}
-                    onChange={(value) => setCode(value)}
-                    className="gap-2"
-                  >
-                    <InputOTPGroup className="gap-3">
-                      <InputOTPSlot index={0} className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/20 backdrop-blur-xl border border-white/40 ring-1 ring-white/40 focus:ring-2 focus:ring-emerald-300/80 shadow-[inset_0_1px_2px_rgba(255,255,255,0.6),0_4px_12px_rgba(0,0,0,0.25)] text-xl md:text-2xl text-white/90 font-bold" />
-                      <InputOTPSlot index={1} className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/20 backdrop-blur-xl border border-white/40 ring-1 ring-white/40 focus:ring-2 focus:ring-emerald-300/80 shadow-[inset_0_1px_2px_rgba(255,255,255,0.6),0_4px_12px_rgba(0,0,0,0.25)] text-xl md:text-2xl text-white/90 font-bold" />
-                      <InputOTPSlot index={2} className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/20 backdrop-blur-xl border border-white/40 ring-1 ring-white/40 focus:ring-2 focus:ring-emerald-300/80 shadow-[inset_0_1px_2px_rgba(255,255,255,0.6),0_4px_12px_rgba(0,0,0,0.25)] text-xl md:text-2xl text-white/90 font-bold" />
-                      <InputOTPSlot index={3} className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/20 backdrop-blur-xl border border-white/40 ring-1 ring-white/40 focus:ring-2 focus:ring-emerald-300/80 shadow-[inset_0_1px_2px_rgba(255,255,255,0.6),0_4px_12px_rgba(0,0,0,0.25)] text-xl md:text-2xl text-white/90 font-bold" />
-                    </InputOTPGroup>
-                  </InputOTP>
+                <div className="flex flex-col items-center gap-4">
+                  <div className="relative">
+                    <InputOTP
+                      maxLength={4}
+                      value={code}
+                      onChange={(value) => setCode(value)}
+                      className="gap-2"
+                      disabled={loading}
+                    >
+                      <InputOTPGroup className="gap-3">
+                        <InputOTPSlot
+                          index={0}
+                          className={cn(
+                            "w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/20 backdrop-blur-xl border border-white/40 ring-1 ring-white/40 focus:ring-2 shadow-[inset_0_1px_2px_rgba(255,255,255,0.6),0_4px_12px_rgba(0,0,0,0.25)] text-xl md:text-2xl text-white/90 font-bold transition-all duration-200",
+                            codeValidated && "border-green-400 ring-green-400 focus:ring-green-400/80",
+                            codeError && code.length === 4 && "border-red-400 ring-red-400 focus:ring-red-400/80"
+                          )}
+                        />
+                        <InputOTPSlot
+                          index={1}
+                          className={cn(
+                            "w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/20 backdrop-blur-xl border border-white/40 ring-1 ring-white/40 focus:ring-2 shadow-[inset_0_1px_2px_rgba(255,255,255,0.6),0_4px_12px_rgba(0,0,0,0.25)] text-xl md:text-2xl text-white/90 font-bold transition-all duration-200",
+                            codeValidated && "border-green-400 ring-green-400 focus:ring-green-400/80",
+                            codeError && code.length === 4 && "border-red-400 ring-red-400 focus:ring-red-400/80"
+                          )}
+                        />
+                        <InputOTPSlot
+                          index={2}
+                          className={cn(
+                            "w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/20 backdrop-blur-xl border border-white/40 ring-1 ring-white/40 focus:ring-2 shadow-[inset_0_1px_2px_rgba(255,255,255,0.6),0_4px_12px_rgba(0,0,0,0.25)] text-xl md:text-2xl text-white/90 font-bold transition-all duration-200",
+                            codeValidated && "border-green-400 ring-green-400 focus:ring-green-400/80",
+                            codeError && code.length === 4 && "border-red-400 ring-red-400 focus:ring-red-400/80"
+                          )}
+                        />
+                        <InputOTPSlot
+                          index={3}
+                          className={cn(
+                            "w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/20 backdrop-blur-xl border border-white/40 ring-1 ring-white/40 focus:ring-2 shadow-[inset_0_1px_2px_rgba(255,255,255,0.6),0_4px_12px_rgba(0,0,0,0.25)] text-xl md:text-2xl text-white/90 font-bold transition-all duration-200",
+                            codeValidated && "border-green-400 ring-green-400 focus:ring-green-400/80",
+                            codeError && code.length === 4 && "border-red-400 ring-red-400 focus:ring-red-400/80"
+                          )}
+                        />
+                      </InputOTPGroup>
+                    </InputOTP>
+                    {codeValidated && (
+                      <div className="absolute -right-12 top-1/2 -translate-y-1/2 animate-in zoom-in duration-300">
+                        <CheckCircle2 className="h-8 w-8 text-green-400" aria-label="Valid code" />
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Error message */}
+                  {codeError && code.length === 4 && (
+                    <div className="flex items-center gap-2 text-red-400 text-sm animate-in slide-in-from-top-2 duration-200" role="alert">
+                      <AlertCircle className="h-4 w-4" aria-hidden="true" />
+                      <span>{codeError}</span>
+                    </div>
+                  )}
                 </div>
               </div>
             </form>
@@ -138,63 +359,117 @@ export default function Hero() {
 
       {/* Signup Form */}
       {view === "signup" && (
-        <div className="relative z-10 px-6 pb-6 max-h-[50vh] overflow-y-auto">
+        <div className="relative z-10 px-6 pb-6 max-h-[50vh] overflow-y-auto animate-in fade-in slide-in-from-bottom-4 duration-500">
           <div className="w-full max-w-md mx-auto">
             <form onSubmit={handleSignup} className="space-y-4 bg-black/40 backdrop-blur-md p-6 rounded-3xl border border-white/20">
               <h2 className="text-2xl font-bold text-center bg-gradient-to-r from-red-600 via-white to-green-600 bg-clip-text text-transparent">
                 Create Your Profile
               </h2>
-              
-              <Input
-                type="text"
-                placeholder="Username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                className="bg-white/10 border-white/30 text-white placeholder:text-white/50"
+
+              <FormField
+                id="signup-username"
+                label="Username"
+                value={username.value}
+                onChange={validateUsernameField}
+                onBlur={() => setUsername(prev => ({ ...prev, touched: true }))}
+                error={username.error}
+                isValid={!username.error && username.value.length >= 3}
+                showValidation={username.touched}
+                placeholder="Choose a username"
                 required
-              />
-              
-              <Input
-                type="text"
-                maxLength={4}
-                placeholder="4-Digit PIN"
-                value={pin}
-                onChange={(e) => e.target.value.match(/^\d{0,4}$/) && setPin(e.target.value)}
-                className="bg-white/10 border-white/30 text-white placeholder:text-white/50"
-                required
+                disabled={loading}
+                autoComplete="username"
+                helperText="3-20 characters, letters, numbers, and underscores only"
               />
 
-              <div className="space-y-2">
-                <p className="text-sm text-white/70 text-center">Provide at least one:</p>
-                <Input
+              <PINInput
+                id="signup-pin"
+                label="Create PIN"
+                value={pin.value}
+                onChange={validatePINField}
+                onBlur={() => setPin(prev => ({ ...prev, touched: true }))}
+                placeholder="4-Digit PIN"
+                required
+                disabled={loading}
+                showStrength={true}
+                error={pin.error}
+                showValidation={pin.touched}
+              />
+
+              <PINInput
+                id="signup-pin-confirm"
+                label="Confirm PIN"
+                value={pinConfirm.value}
+                onChange={validatePINConfirmField}
+                onBlur={() => setPinConfirm(prev => ({ ...prev, touched: true }))}
+                placeholder="Re-enter PIN"
+                required
+                disabled={loading}
+                error={pinConfirm.error}
+                showValidation={pinConfirm.touched}
+              />
+
+              <div className="space-y-3 pt-2">
+                <div className={cn(
+                  "text-sm text-center py-2 px-3 rounded-lg",
+                  contactError ? "bg-red-500/20 text-red-300" : "bg-white/10 text-white/70"
+                )}>
+                  Provide at least one contact method:
+                </div>
+
+                <FormField
+                  id="signup-phone"
+                  label="Phone Number"
                   type="tel"
-                  placeholder="Phone Number"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  className="bg-white/10 border-white/30 text-white placeholder:text-white/50"
+                  value={phone.value}
+                  onChange={validatePhoneField}
+                  onBlur={() => setPhone(prev => ({ ...prev, touched: true }))}
+                  error={phone.error}
+                  isValid={!phone.error && phone.value.length > 0}
+                  showValidation={phone.touched}
+                  placeholder="(555) 123-4567"
+                  disabled={loading}
+                  inputMode="tel"
+                  autoComplete="tel"
                 />
-                
-                <Input
+
+                <FormField
+                  id="signup-email"
+                  label="Email"
                   type="email"
-                  placeholder="Email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="bg-white/10 border-white/30 text-white placeholder:text-white/50"
+                  value={email.value}
+                  onChange={validateEmailField}
+                  onBlur={() => setEmail(prev => ({ ...prev, touched: true }))}
+                  error={email.error}
+                  isValid={!email.error && email.value.length > 0}
+                  showValidation={email.touched}
+                  placeholder="your@email.com"
+                  disabled={loading}
+                  inputMode="email"
+                  autoComplete="email"
                 />
-                
-                <Input
+
+                <FormField
+                  id="signup-instagram"
+                  label="Instagram"
                   type="text"
-                  placeholder="Instagram Username"
-                  value={instagram}
-                  onChange={(e) => setInstagram(e.target.value)}
-                  className="bg-white/10 border-white/30 text-white placeholder:text-white/50"
+                  value={instagram.value}
+                  onChange={validateInstagramField}
+                  onBlur={() => setInstagram(prev => ({ ...prev, touched: true }))}
+                  error={instagram.error}
+                  isValid={!instagram.error && instagram.value.length > 0}
+                  showValidation={instagram.touched}
+                  placeholder="@username"
+                  disabled={loading}
+                  autoComplete="off"
                 />
               </div>
 
               <button
                 type="button"
-                onClick={() => setView("login")}
-                className="text-white/80 hover:text-white text-sm underline w-full text-center"
+                onClick={switchToLogin}
+                disabled={loading}
+                className="text-white/80 hover:text-white text-sm underline w-full text-center transition-colors disabled:opacity-50"
               >
                 Already have an account? Login
               </button>
@@ -205,36 +480,46 @@ export default function Hero() {
 
       {/* Login Form */}
       {view === "login" && (
-        <div className="relative z-10 px-6 pb-6">
+        <div className="relative z-10 px-6 pb-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
           <div className="w-full max-w-md mx-auto">
             <form onSubmit={handleLogin} className="space-y-4 bg-black/40 backdrop-blur-md p-6 rounded-3xl border border-white/20">
               <h2 className="text-2xl font-bold text-center bg-gradient-to-r from-red-600 via-white to-green-600 bg-clip-text text-transparent">
                 Welcome Back
               </h2>
-              
-              <Input
-                type="text"
-                placeholder="Username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                className="bg-white/10 border-white/30 text-white placeholder:text-white/50"
+
+              <FormField
+                id="login-username"
+                label="Username"
+                value={username.value}
+                onChange={validateUsernameField}
+                onBlur={() => setUsername(prev => ({ ...prev, touched: true }))}
+                error={username.error}
+                isValid={!username.error && username.value.length >= 3}
+                showValidation={username.touched}
+                placeholder="Enter your username"
                 required
+                disabled={loading}
+                autoComplete="username"
               />
-              
-              <Input
-                type="text"
-                maxLength={4}
+
+              <PINInput
+                id="login-pin"
+                label="PIN"
+                value={pin.value}
+                onChange={validatePINField}
+                onBlur={() => setPin(prev => ({ ...prev, touched: true }))}
                 placeholder="4-Digit PIN"
-                value={pin}
-                onChange={(e) => e.target.value.match(/^\d{0,4}$/) && setPin(e.target.value)}
-                className="bg-white/10 border-white/30 text-white placeholder:text-white/50"
                 required
+                disabled={loading}
+                error={pin.error}
+                showValidation={pin.touched}
               />
 
               <button
                 type="button"
-                onClick={() => setView("signup")}
-                className="text-white/80 hover:text-white text-sm underline w-full text-center"
+                onClick={switchToSignup}
+                disabled={loading}
+                className="text-white/80 hover:text-white text-sm underline w-full text-center transition-colors disabled:opacity-50"
               >
                 Don't have an account? Sign up
               </button>
@@ -245,9 +530,14 @@ export default function Hero() {
 
       {/* Action Button */}
       <div className="relative z-10 px-6 pb-8 md:pb-12">
-        <button
+        <LoadingButton
           type="button"
-          disabled={loading || (view === "entry" && code.length !== 4) || (view !== "entry" && (!username || !pin))}
+          loading={loading}
+          disabled={
+            loading ||
+            (view === "entry" && (!codeValidated || code.length !== 4)) ||
+            (view !== "entry" && (username.value.length < 3 || pin.value.length !== 4))
+          }
           onClick={view === "entry" ? handleCodeSubmit : view === "signup" ? handleSignup : handleLogin}
           className="
             w-full relative h-16 px-12
@@ -265,8 +555,8 @@ export default function Hero() {
             disabled:cursor-not-allowed disabled:hover:scale-100 disabled:opacity-50
           "
         >
-          {loading ? "Loading..." : view === "entry" ? "Enter TD STUDIOS" : view === "signup" ? "Create Account" : "Login"}
-        </button>
+          {view === "entry" ? "Enter TD STUDIOS" : view === "signup" ? "Create Account" : "Login"}
+        </LoadingButton>
       </div>
     </section>
   );
