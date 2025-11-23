@@ -1434,6 +1434,39 @@ export type Database = {
         }
         Relationships: []
       }
+      user_profiles_auth: {
+        Row: {
+          created_at: string | null
+          email: string | null
+          id: string
+          instagram_handle: string | null
+          last_login_at: string | null
+          phone: string | null
+          pin_hash: string
+          username: string
+        }
+        Insert: {
+          created_at?: string | null
+          email?: string | null
+          id?: string
+          instagram_handle?: string | null
+          last_login_at?: string | null
+          phone?: string | null
+          pin_hash: string
+          username: string
+        }
+        Update: {
+          created_at?: string | null
+          email?: string | null
+          id?: string
+          instagram_handle?: string | null
+          last_login_at?: string | null
+          phone?: string | null
+          pin_hash?: string
+          username?: string
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string

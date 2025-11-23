@@ -1,11 +1,12 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import { Instagram, Phone } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { Instagram, Phone, LogOut } from "lucide-react";
 import { categories } from "@/data/categories";
 import products from "@/data/products";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { tds } from "@/lib/theme";
+import { auth } from "@/lib/auth";
 const heroImage = "/td-white.jpg";
 
 interface CartItem {
@@ -16,8 +17,25 @@ interface CartItem {
 }
 
 export default function Dashboard() {
+  const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState("pre-packaged-flower");
   const [cart, setCart] = useState<CartItem[]>([]);
+  const user = auth.getUser();
+
+  useEffect(() => {
+    if (!auth.isAuthenticated()) {
+      navigate("/");
+    }
+  }, [navigate]);
+
+  const handleLogout = () => {
+    auth.logout();
+    navigate("/");
+  };
+
+  if (!user) {
+    return null;
+  }
 
   const filtered = products.filter(p => p.category === selectedCategory);
 
@@ -41,6 +59,11 @@ export default function Dashboard() {
       {/* Header */}
       <div className="bg-black/80 backdrop-blur-sm border-b border-white/10 p-4">
         <div className="flex justify-between items-center max-w-7xl mx-auto">
+          <div className="flex-1">
+            <p className="text-sm text-white/70">
+              Welcome, <span className="font-semibold text-white">{user.username}</span>
+            </p>
+          </div>
           <Link to="/" className="flex-1 flex justify-center">
             <img
               src="/td-studios-xmas-logo.png"
@@ -50,7 +73,7 @@ export default function Dashboard() {
               onContextMenu={(e) => e.preventDefault()}
             />
           </Link>
-          <div className="flex gap-4 items-center">
+          <div className="flex gap-4 items-center flex-1 justify-end">
             <a
               href="tel:+13474859935"
               className="text-white hover:text-accent transition-colors"
@@ -65,6 +88,13 @@ export default function Dashboard() {
             >
               <Instagram className="h-6 w-6" />
             </a>
+            <button
+              onClick={handleLogout}
+              className="text-white hover:text-red-400 transition-colors"
+              title="Logout"
+            >
+              <LogOut className="h-6 w-6" />
+            </button>
           </div>
         </div>
       </div>
