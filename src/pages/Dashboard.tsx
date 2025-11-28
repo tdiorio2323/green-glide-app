@@ -7,7 +7,6 @@ import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { tds } from "@/lib/theme";
 import { auth } from "@/lib/auth";
-const heroImage = "/td-white.jpg";
 
 interface CartItem {
   id: number;
@@ -52,12 +51,9 @@ export default function Dashboard() {
   const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
-    <main
-      className="min-h-screen text-white bg-cover bg-center bg-fixed"
-      style={{ backgroundImage: `url(${heroImage})` }}
-    >
+    <main className="min-h-screen text-white bg-luxury-spotlight">
       {/* Header */}
-      <div className="bg-black/80 backdrop-blur-sm border-b border-white/10 p-4">
+      <div className="bg-luxury-dark/95 backdrop-blur-xl border-b border-white/5 p-4 shadow-lg">
         <div className="flex justify-between items-center max-w-7xl mx-auto">
           <div className="flex-1">
             <p className="text-sm text-white/70">
@@ -100,7 +96,7 @@ export default function Dashboard() {
       </div>
 
       {/* Category Slider */}
-      <div className="sticky top-0 z-20 bg-black/80 backdrop-blur-xl border-b border-white/10">
+      <div className="sticky top-0 z-20 bg-luxury-dark/90 backdrop-blur-xl border-b border-white/5">
         <div className="flex overflow-x-auto gap-2 px-4 py-3">
           {categories.map(cat => (
             <button
@@ -166,7 +162,7 @@ export default function Dashboard() {
 
       {/* Checkout Bar */}
       {cart.length > 0 && (
-        <div className="fixed bottom-0 left-0 right-0 bg-black/95 backdrop-blur-md border-t border-white/10 p-4 flex justify-between items-center z-30">
+        <div className="fixed bottom-0 left-0 right-0 bg-luxury-dark/95 backdrop-blur-xl border-t border-white/5 p-4 flex justify-between items-center z-30 shadow-2xl">
           <div>
             <p className="font-medium text-white">
               {totalItems} item{totalItems > 1 ? "s" : ""}

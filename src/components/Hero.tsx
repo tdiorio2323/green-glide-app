@@ -17,8 +17,6 @@ import {
   validateContactMethods,
 } from "@/lib/validation";
 
-const heroImage = "/td-white.jpg";
-
 interface FieldState {
   value: string;
   error?: string;
@@ -254,19 +252,8 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative min-h-screen h-screen flex flex-col overflow-hidden">
-      {/* Full-Screen Background */}
-      <div className="absolute inset-0">
-        <img
-          src={heroImage}
-          alt="TD STUDIOS"
-          className="w-full h-full object-cover select-none"
-          draggable="false"
-          onContextMenu={(e) => e.preventDefault()}
-        />
-        {/* Dark gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/60" />
-      </div>
+    <section className="relative min-h-screen h-screen flex flex-col overflow-hidden bg-luxury-hero">
+      {/* Luxury gradient background with radial spotlight - no image needed */}
 
       {/* Centered Logo with breathing animation */}
       <div className="relative z-10 flex items-center justify-center flex-1 pt-safe pb-4">
@@ -358,7 +345,7 @@ export default function Hero() {
       {view === "signup" && (
         <div className="relative z-10 px-4 sm:px-6 pb-safe pb-4 sm:pb-6 max-h-[60vh] sm:max-h-[55vh] overflow-y-auto animate-in fade-in slide-in-from-bottom-4 duration-500">
           <div className="w-full max-w-md mx-auto">
-            <form onSubmit={handleSignup} className="space-y-3 sm:space-y-4 bg-black/40 backdrop-blur-md p-4 sm:p-6 rounded-2xl sm:rounded-3xl border border-white/20">
+            <form onSubmit={handleSignup} className="space-y-3 sm:space-y-4 bg-luxury-dark/80 backdrop-blur-xl p-4 sm:p-6 rounded-2xl sm:rounded-3xl border border-white/10 shadow-2xl">
               <h2 className="text-xl sm:text-2xl font-bold text-center bg-gradient-to-r from-red-600 via-white to-green-600 bg-clip-text text-transparent">
                 Create Your Profile
               </h2>
@@ -479,7 +466,7 @@ export default function Hero() {
       {view === "login" && (
         <div className="relative z-10 px-4 sm:px-6 pb-safe pb-4 sm:pb-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
           <div className="w-full max-w-md mx-auto">
-            <form onSubmit={handleLogin} className="space-y-3 sm:space-y-4 bg-black/40 backdrop-blur-md p-4 sm:p-6 rounded-2xl sm:rounded-3xl border border-white/20">
+            <form onSubmit={handleLogin} className="space-y-3 sm:space-y-4 bg-luxury-dark/80 backdrop-blur-xl p-4 sm:p-6 rounded-2xl sm:rounded-3xl border border-white/10 shadow-2xl">
               <h2 className="text-xl sm:text-2xl font-bold text-center bg-gradient-to-r from-red-600 via-white to-green-600 bg-clip-text text-transparent">
                 Welcome Back
               </h2>

@@ -9,7 +9,13 @@ All colors MUST be HSL.
 @layer base {
   :root {
     /* CABANA Cannabis Marketplace Design System */
-    --background: 12 15% 8%;
+    /* Luxury Cinematic Background Colors */
+    --luxury-dark: 255 40% 2%;     /* #050308 - Primary deep dark */
+    --luxury-navy: 225 60% 5%;     /* #050814 - Deep navy */
+    --ember-accent: 5 100% 62%;    /* #FF4A3D - Ember red */
+    --teal-glow: 168 94% 51%;      /* #0EF7C8 - Subtle teal */
+
+    --background: 255 40% 2%;      /* Updated to luxury-dark */
     --foreground: 45 100% 96%;
 
     --card: 220 27% 12%;
@@ -88,7 +94,19 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-luxury-base text-foreground;
+    position: relative;
+  }
+
+  /* Subtle texture overlay on body */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
+    opacity: 0.05;
+    pointer-events: none;
+    z-index: 0;
   }
 
   @keyframes breathe {

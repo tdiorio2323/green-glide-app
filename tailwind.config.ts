@@ -25,6 +25,10 @@ export default {
 				ring: 'hsl(var(--ring))',
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
+				'luxury-dark': 'hsl(var(--luxury-dark))',
+				'luxury-navy': 'hsl(var(--luxury-navy))',
+				'ember-accent': 'hsl(var(--ember-accent))',
+				'teal-glow': 'hsl(var(--teal-glow))',
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
 					foreground: 'hsl(var(--primary-foreground))',
@@ -71,7 +75,11 @@ export default {
 			},
 			backgroundImage: {
 				'gradient-holographic': 'var(--gradient-holographic)',
-				'gradient-tropical': 'var(--gradient-tropical)'
+				'gradient-tropical': 'var(--gradient-tropical)',
+				'luxury-base': 'linear-gradient(135deg, #050308 0%, #050814 100%)',
+				'luxury-spotlight': 'radial-gradient(ellipse 800px 600px at center 40%, rgba(255, 74, 61, 0.18) 0%, transparent 60%), linear-gradient(135deg, #050308 0%, #050814 100%)',
+				'luxury-hero': 'radial-gradient(ellipse 1000px 800px at center 35%, rgba(255, 74, 61, 0.35) 0%, transparent 70%), linear-gradient(135deg, #050308 0%, #050814 100%)',
+				'luxury-texture': "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E\")"
 			},
 			boxShadow: {
 				'glow': 'var(--shadow-glow)',
