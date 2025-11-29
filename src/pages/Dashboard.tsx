@@ -1,12 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Instagram, Phone, LogOut } from "lucide-react";
+import { Instagram, Phone } from "lucide-react";
 import { categories } from "@/data/categories";
 import products from "@/data/products";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { tds } from "@/lib/theme";
-import { auth } from "@/lib/auth";
 
 interface CartItem {
   id: number;
@@ -17,24 +16,8 @@ interface CartItem {
 
 export default function Dashboard() {
   const navigate = useNavigate();
-  const [selectedCategory, setSelectedCategory] = useState("pre-packaged-flower");
+  const [selectedCategory, setSelectedCategory] = useState("holiday");
   const [cart, setCart] = useState<CartItem[]>([]);
-  const user = auth.getUser();
-
-  useEffect(() => {
-    if (!auth.isAuthenticated()) {
-      navigate("/");
-    }
-  }, [navigate]);
-
-  const handleLogout = () => {
-    auth.logout();
-    navigate("/");
-  };
-
-  if (!user) {
-    return null;
-  }
 
   const filtered = products.filter(p => p.category === selectedCategory);
 
@@ -57,7 +40,7 @@ export default function Dashboard() {
         <div className="flex justify-between items-center max-w-7xl mx-auto">
           <div className="flex-1">
             <p className="text-sm text-white/70">
-              Welcome, <span className="font-semibold text-white">{user.username}</span>
+              Welcome to <span className="font-semibold text-white">TD STUDIOS</span>
             </p>
           </div>
           <Link to="/" className="flex-1 flex justify-center">
@@ -84,13 +67,6 @@ export default function Dashboard() {
             >
               <Instagram className="h-6 w-6" />
             </a>
-            <button
-              onClick={handleLogout}
-              className="text-white hover:text-red-400 transition-colors"
-              title="Logout"
-            >
-              <LogOut className="h-6 w-6" />
-            </button>
           </div>
         </div>
       </div>

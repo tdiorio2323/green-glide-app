@@ -3,98 +3,19 @@ import { Badge } from "@/components/ui/badge";
 import { useNavigate } from "react-router-dom";
 import products from "@/data/products";
 
-const prePackagedFlower = products.filter(p => p.category === "pre-packaged-flower");
+const holidayProducts = products.filter(p => p.category === "holiday").slice(0, 8);
 
-const brands = [
-  {
-    name: prePackagedFlower[9]?.name || "Super Mario (3.5g)",
-    image: prePackagedFlower[9]?.image || "/pre-packaged-flower/SUPER-MARIO.png",
-    price: prePackagedFlower[9]?.price || 45,
-    rating: 4.9,
-    reviews: 247,
-    deliveryTime: "30-45 min",
-    distance: "2.1 mi",
-    specialty: "Pre-Packaged Flower",
-    badge: "Best Seller"
-  },
-  {
-    name: prePackagedFlower[1]?.name || "Bowser (3.5g)",
-    image: prePackagedFlower[1]?.image || "/pre-packaged-flower/BOWSER.png",
-    price: prePackagedFlower[1]?.price || 45,
-    rating: 4.7,
-    reviews: 189,
-    deliveryTime: "25-40 min",
-    distance: "1.8 mi",
-    specialty: "Pre-Packaged Flower",
-    badge: "Top Rated"
-  },
-  {
-    name: prePackagedFlower[11]?.name || "Yoshi (3.5g)",
-    image: prePackagedFlower[11]?.image || "/pre-packaged-flower/YOSHI.png",
-    price: prePackagedFlower[11]?.price || 45,
-    rating: 4.8,
-    reviews: 312,
-    deliveryTime: "35-50 min",
-    distance: "3.2 mi",
-    specialty: "Pre-Packaged Flower",
-    badge: "Popular"
-  },
-  {
-    name: prePackagedFlower[4]?.name || "Luigi (3.5g)",
-    image: prePackagedFlower[4]?.image || "/pre-packaged-flower/LUIGI.png",
-    price: prePackagedFlower[4]?.price || 45,
-    rating: 4.6,
-    reviews: 156,
-    deliveryTime: "20-35 min",
-    distance: "1.2 mi",
-    specialty: "Pre-Packaged Flower",
-    badge: "New"
-  },
-  {
-    name: prePackagedFlower[2]?.name || "Crunch Berries (3.5g)",
-    image: prePackagedFlower[2]?.image || "/pre-packaged-flower/CRUNCH-BERRIES.jpeg",
-    price: prePackagedFlower[2]?.price || 45,
-    rating: 4.7,
-    reviews: 203,
-    deliveryTime: "25-40 min",
-    distance: "1.5 mi",
-    specialty: "Pre-Packaged Flower",
-    badge: "Trending"
-  },
-  {
-    name: prePackagedFlower[3]?.name || "Donkey Kong (3.5g)",
-    image: prePackagedFlower[3]?.image || "/pre-packaged-flower/DONKEY-KONG.png",
-    price: prePackagedFlower[3]?.price || 45,
-    rating: 4.8,
-    reviews: 278,
-    deliveryTime: "30-45 min",
-    distance: "2.3 mi",
-    specialty: "Pre-Packaged Flower",
-    badge: "Top Rated"
-  },
-  {
-    name: prePackagedFlower[6]?.name || "Princess Peach (3.5g)",
-    image: prePackagedFlower[6]?.image || "/pre-packaged-flower/PRINCESS-PEACH.jpg",
-    price: prePackagedFlower[6]?.price || 45,
-    rating: 4.9,
-    reviews: 341,
-    deliveryTime: "20-35 min",
-    distance: "1.4 mi",
-    specialty: "Pre-Packaged Flower",
-    badge: "Best Seller"
-  },
-  {
-    name: prePackagedFlower[10]?.name || "Vanilla Milkshake (3.5g)",
-    image: prePackagedFlower[10]?.image || "/pre-packaged-flower/VANILLA-MILKSHAKE.png",
-    price: prePackagedFlower[10]?.price || 45,
-    rating: 4.7,
-    reviews: 192,
-    deliveryTime: "30-45 min",
-    distance: "2.0 mi",
-    specialty: "Pre-Packaged Flower",
-    badge: "Popular"
-  }
-];
+const brands = holidayProducts.map(product => ({
+  name: product.name,
+  image: product.image,
+  price: product.price,
+  rating: 4.9,
+  reviews: Math.floor(Math.random() * 300) + 100,
+  deliveryTime: "30-45 min",
+  distance: "2.1 mi",
+  specialty: "Holiday Special",
+  badge: "Best Seller"
+}));
 
 export default function ExploreMenus() {
   const navigate = useNavigate();

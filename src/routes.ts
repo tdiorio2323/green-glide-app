@@ -14,7 +14,7 @@ export type RouteItem = {
 
 export const routes: RouteItem[] = [
     { path: "/", component: Index, label: "Landing (OTP)" },
-    { path: "/dashboard", component: Dashboard, label: "Storefront", private: true },
+    { path: "/dashboard", component: Dashboard, label: "Storefront" },
     { path: "/_routes", component: RoutesDebug, label: "Routes Debug" },
     { path: "*", component: NotFound, label: "Not Found" },
 ];

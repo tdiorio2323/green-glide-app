@@ -1,6 +1,7 @@
 export const categories = [
-    { id: "pre-packaged-flower", name: "Holiday Designs" },
+    { id: "holiday", name: "Holiday" },
     { id: "candy", name: "Candy" },
-    { id: "character", name: "Character" },
-    { id: "misc", name: "MISC" },
+    { id: "characters", name: "Super Mario Cart" },
+    { id: "misc", name: "Misc" },
+    { id: "new-jawns", name: "New Jawns" },
 ];
