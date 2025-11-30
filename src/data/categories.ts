@@ -4,4 +4,5 @@ export const categories = [
     { id: "characters", name: "Super Mario Cart" },
     { id: "misc", name: "Misc" },
     { id: "new-jawns", name: "New Jawns" },
+    { id: "dirty-fanta", name: "Dirty Fanta" },
 ];
