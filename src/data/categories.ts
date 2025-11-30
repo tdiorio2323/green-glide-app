@@ -6,4 +6,5 @@ export const categories = [
     { id: "new-jawns", name: "New Jawns" },
     { id: "dirty-fanta", name: "Dirty Fanta" },
     { id: "hi-c", name: "Hi-C" },
+    { id: "mamba", name: "Mamba" },
 ];
