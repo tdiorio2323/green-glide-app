@@ -37,21 +37,21 @@ export default function Hero() {
   return (
     <section className="relative min-h-screen h-screen flex items-center justify-center overflow-hidden bg-luxury-hero p-4 sm:p-6">
       {/* Card Container */}
-      <div className="w-full max-w-[400px] bg-black/40 backdrop-blur-2xl border border-white/10 rounded-[2rem] shadow-2xl p-6 sm:p-8 flex flex-col items-center gap-6 sm:gap-8 animate-in fade-in zoom-in duration-500 max-h-[95vh] overflow-y-auto no-scrollbar">
+      <div className="w-full max-w-[400px] bg-black/40 backdrop-blur-2xl border border-white/10 rounded-[2rem] shadow-2xl p-6 sm:p-8 flex flex-col items-center gap-6 sm:gap-8 animate-in fade-in zoom-in duration-700 slide-in-from-bottom-8 max-h-[95vh] overflow-y-auto no-scrollbar">
 
         {/* Logo */}
-        <div className="flex-shrink-0">
+        <div className="flex-shrink-0 animate-float">
           <img
             src="/td-studios-xmas-logo.png"
             alt="TD STUDIOS"
-            className="h-20 sm:h-24 w-auto drop-shadow-2xl animate-[breathe_3s_ease-in-out_infinite] select-none pointer-events-none"
+            className="h-20 sm:h-24 w-auto drop-shadow-2xl select-none pointer-events-none"
             draggable="false"
             onContextMenu={(e) => e.preventDefault()}
           />
         </div>
 
         {/* Access Code Interface */}
-        <div className="w-full space-y-6 sm:space-y-8 flex flex-col items-center">
+        <div className="w-full space-y-6 sm:space-y-8 flex flex-col items-center animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-200 fill-mode-backwards">
           <div className="text-center space-y-4">
             <h2 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-red-600 via-white to-green-600 bg-clip-text text-transparent drop-shadow-lg px-2">
               Enter Access Code
@@ -72,7 +72,7 @@ export default function Hero() {
                         index={index}
                         className={cn(
                           "w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white/10 backdrop-blur-md border border-white/20 ring-1 ring-white/20 shadow-inner text-lg sm:text-xl text-white/90 font-bold transition-all duration-200",
-                          code.length > index && "border-green-400 ring-green-400 shadow-[0_0_15px_rgba(74,222,128,0.3)] bg-green-500/10"
+                          code.length > index && "border-green-400 ring-green-400 shadow-[0_0_15px_rgba(74,222,128,0.3)] bg-green-500/10 scale-105"
                         )}
                       />
                     ))}

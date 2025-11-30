@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Instagram, Phone } from "lucide-react";
+import { Instagram, Phone, ShoppingBag, Sparkles } from "lucide-react";
 import { categories } from "@/data/categories";
 import products from "@/data/products";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { tds } from "@/lib/theme";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 interface CartItem {
   id: number;
@@ -18,8 +19,17 @@ export default function Dashboard() {
   const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState("holiday");
   const [cart, setCart] = useState<CartItem[]>([]);
+  const [scrolled, setScrolled] = useState(false);
 
   const filtered = products.filter(p => p.category === selectedCategory);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const addToCart = (item: typeof products[0]) => {
     const existing = cart.find((c) => c.id === item.id);
@@ -34,56 +44,88 @@ export default function Dashboard() {
   const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
-    <main className="min-h-screen text-white bg-luxury-spotlight">
+    <main className="min-h-screen text-white bg-luxury-spotlight pb-24">
       {/* Header */}
-      <div className="bg-luxury-dark/95 backdrop-blur-xl border-b border-white/5 p-4 shadow-lg">
-        <div className="flex justify-between items-center max-w-7xl mx-auto">
-          <div className="flex-1">
-            <p className="text-sm text-white/70">
-              Welcome to <span className="font-semibold text-white">TD STUDIOS</span>
+      <header
+        className={cn(
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-transparent",
+          scrolled ? "bg-luxury-dark/80 backdrop-blur-xl border-white/5 py-2 shadow-lg" : "bg-transparent py-4"
+        )}
+      >
+        <div className="flex justify-between items-center max-w-7xl mx-auto px-4">
+          <div className="flex-1 flex items-center gap-2">
+            <div className="h-8 w-8 rounded-full bg-gradient-to-tr from-amber-400 to-amber-600 flex items-center justify-center shadow-golden">
+              <Sparkles className="h-4 w-4 text-white animate-pulse" />
+            </div>
+            <p className={cn("text-sm transition-opacity duration-300", scrolled ? "opacity-100" : "opacity-0 hidden sm:block")}>
+              <span className="font-bold text-white tracking-wider">TD STUDIOS</span>
             </p>
           </div>
-          <Link to="/" className="flex-1 flex justify-center hover:opacity-90 transition">
+
+          <Link to="/" className="flex-1 flex justify-center hover:scale-105 transition-transform duration-300">
             <img
               src="/td-studios-xmas-logo.png"
               alt="TD STUDIOS"
-              className="h-16 w-auto drop-shadow-lg cursor-pointer select-none pointer-events-none"
+              className={cn(
+                "w-auto drop-shadow-2xl cursor-pointer select-none pointer-events-none transition-all duration-300",
+                scrolled ? "h-12" : "h-20 animate-float"
+              )}
               draggable="false"
               onContextMenu={(e) => e.preventDefault()}
             />
           </Link>
+
           <div className="flex gap-4 items-center flex-1 justify-end">
             <a
               href="tel:+13474859935"
-              className="text-white hover:text-accent transition-colors"
+              className="text-white/80 hover:text-white hover:bg-white/10 p-2 rounded-full transition-all"
             >
-              <Phone className="h-6 w-6" />
+              <Phone className="h-5 w-5" />
             </a>
             <a
               href="https://www.instagram.com/tdstudiosco"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-white hover:text-accent transition-colors"
+              className="text-white/80 hover:text-white hover:bg-white/10 p-2 rounded-full transition-all"
             >
-              <Instagram className="h-6 w-6" />
+              <Instagram className="h-5 w-5" />
             </a>
           </div>
         </div>
-      </div>
+      </header>
+
+      {/* Hero / Welcome Section */}
+      <section className="pt-32 pb-8 px-4 text-center space-y-4">
+        <ScrollReveal>
+          <h1 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-amber-200 via-white to-amber-200 bg-clip-text text-transparent drop-shadow-sm">
+            Premium Selection
+          </h1>
+        </ScrollReveal>
+        <ScrollReveal delay={100}>
+          <p className="text-white/60 text-sm max-w-md mx-auto leading-relaxed">
+            Curated exotic snacks and essentials for the connoisseur.
+          </p>
+        </ScrollReveal>
+      </section>
 
       {/* Category Slider */}
-      <div className="sticky top-0 z-20 bg-luxury-dark/90 backdrop-blur-xl border-b border-white/5">
-        <div className="flex overflow-x-auto gap-2 px-4 py-3">
-          {categories.map(cat => (
+      <div className="sticky top-[60px] z-40 bg-luxury-dark/80 backdrop-blur-xl border-y border-white/5 shadow-2xl">
+        <div className="flex overflow-x-auto gap-3 px-4 py-4 no-scrollbar items-center">
+          {categories.map((cat, idx) => (
             <button
               key={cat.id}
               onClick={() => setSelectedCategory(cat.id)}
-              className={`
-                rounded-full px-5 py-2 text-sm font-semibold
-                ${cat.id === selectedCategory
-                  ? "bg-gradient-to-r from-[#FFC93B] via-[#FF4B4B] via-[#00A3FF] to-[#3CC65A] text-white"
-                  : "bg-white/8 text-white/80 ring-1 ring-white/10 hover:bg-white/12"}
-              `}
+              className={cn(
+                "relative flex-shrink-0 rounded-full px-6 py-2.5 text-sm font-bold tracking-wide transition-all duration-300",
+                cat.id === selectedCategory
+                  ? "text-white shadow-[0_0_20px_rgba(255,255,255,0.2)] scale-105"
+                  : "bg-white/5 text-white/60 hover:bg-white/10 hover:text-white hover:scale-105 border border-white/5"
+              )}
+              style={{
+                background: cat.id === selectedCategory
+                  ? "linear-gradient(90deg, #FFC93B 0%, #FF4B4B 50%, #00A3FF 100%)"
+                  : undefined
+              }}
             >
               {cat.name}
             </button>
@@ -92,76 +134,91 @@ export default function Dashboard() {
       </div>
 
       {/* Product List */}
-      <div className="space-y-4 px-4 py-6">
-        {filtered.map(p => (
-          <Card
-            key={p.id}
-            className={cn(
-              "flex items-center gap-4 p-4 rounded-3xl transition hover:-translate-y-1",
-              tds.holoCard,
-              tds.glass,
-              "ring-1 ring-white/10 hover:ring-white/20"
-            )}
-          >
-            <img
-              src={p.image}
-              alt={p.name}
-              className="w-32 h-40 rounded-2xl object-cover ring-1 ring-white/15 bg-black/30 select-none pointer-events-none"
-              draggable="false"
-              onContextMenu={(e) => e.preventDefault()}
-            />
-            <div className="flex-1">
-              <h3 className="font-semibold text-white/95">{p.name}</h3>
-              <p className="text-sm font-semibold text-amber-300">${p.price.toFixed(2)}</p>
-            </div>
-            <button
-              onClick={() => addToCart(p)}
-              className="
-                relative rounded-full px-6 py-3 text-sm font-bold uppercase tracking-wide
-                text-white
-                bg-gradient-to-r from-[#FFC93B] via-[#FF4B4B] via-[#00A3FF] to-[#3CC65A]
-                shadow-[0_8px_24px_rgba(0,0,0,0.35)]
-                hover:scale-105 hover:shadow-[0_12px_30px_rgba(255,201,59,0.5)]
-                active:scale-95
-                transition-all duration-300 ease-out
-                cursor-pointer
-                before:content-[''] before:absolute before:inset-0 before:rounded-full
-                before:bg-gradient-to-b before:from-white/30 before:to-transparent
-                before:pointer-events-none
-              "
+      <div className="max-w-7xl mx-auto px-4 py-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {filtered.map((p, idx) => (
+          <ScrollReveal key={p.id} delay={(idx % 5) * 50} className="h-full">
+            <Card
+              className={cn(
+                "group relative h-full flex flex-row sm:flex-col items-center gap-4 p-4 rounded-[2rem] overflow-hidden border-0",
+                "bg-white/5 backdrop-blur-md border border-white/10",
+                "hover:bg-white/10 transition-all duration-500",
+                "glass-card-hover"
+              )}
             >
-              Add to Cart
-            </button>
-          </Card>
+              {/* Image Container */}
+              <div className="relative w-32 h-32 sm:w-full sm:h-64 flex-shrink-0 rounded-2xl overflow-hidden shadow-2xl ring-1 ring-white/10 group-hover:ring-white/30 transition-all">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10" />
+                <img
+                  src={p.image}
+                  alt={p.name}
+                  className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out"
+                  draggable="false"
+                  loading="lazy"
+                />
+                <div className="absolute top-2 right-2 z-20 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full border border-white/10">
+                  <span className="text-xs font-bold text-amber-300">${p.price}</span>
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="flex-1 flex flex-col justify-between w-full gap-3">
+                <div>
+                  <h3 className="font-bold text-lg text-white/90 leading-tight group-hover:text-white transition-colors">
+                    {p.name}
+                  </h3>
+                  <p className="text-xs text-white/50 mt-1 uppercase tracking-wider">{p.category}</p>
+                </div>
+
+                <button
+                  onClick={() => addToCart(p)}
+                  className="
+                    w-full mt-auto
+                    relative overflow-hidden rounded-xl py-3 px-4
+                    bg-white/10 hover:bg-white/20
+                    border border-white/10 hover:border-white/30
+                    group/btn transition-all duration-300
+                  "
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover/btn:translate-x-[100%] transition-transform duration-700" />
+                  <span className="relative z-10 flex items-center justify-center gap-2 text-sm font-bold text-white uppercase tracking-wider">
+                    <ShoppingBag className="w-4 h-4" /> Add to Cart
+                  </span>
+                </button>
+              </div>
+            </Card>
+          </ScrollReveal>
         ))}
       </div>
 
       {/* Checkout Bar */}
-      {cart.length > 0 && (
-        <div className="fixed bottom-0 left-0 right-0 bg-luxury-dark/95 backdrop-blur-xl border-t border-white/5 p-4 flex justify-between items-center z-30 shadow-2xl">
-          <div>
-            <p className="font-medium text-white">
-              {totalItems} item{totalItems > 1 ? "s" : ""}
-            </p>
-            <p className="text-green-400 font-bold text-lg">${totalPrice.toFixed(2)}</p>
+      <div className={cn(
+        "fixed bottom-6 left-4 right-4 z-50 transition-all duration-500 transform",
+        cart.length > 0 ? "translate-y-0 opacity-100" : "translate-y-[150%] opacity-0"
+      )}>
+        <div className="max-w-md mx-auto bg-black/80 backdrop-blur-xl border border-white/10 rounded-3xl p-2 pr-3 shadow-[0_20px_50px_rgba(0,0,0,0.5)] flex items-center justify-between gap-4">
+          <div className="flex items-center gap-4 pl-4">
+            <div className="bg-white/10 rounded-full p-2.5">
+              <ShoppingBag className="w-5 h-5 text-amber-300" />
+            </div>
+            <div>
+              <p className="text-xs text-white/50 font-medium uppercase tracking-wider">Total</p>
+              <p className="text-white font-bold text-lg leading-none">${totalPrice.toFixed(2)}</p>
+            </div>
           </div>
+
           <button className="
-            relative rounded-full px-8 py-3 text-base font-bold uppercase tracking-wide
+            relative rounded-2xl px-8 py-3.5 text-sm font-bold uppercase tracking-wide
             text-white
             bg-gradient-to-r from-[#FFC93B] via-[#FF4B4B] via-[#00A3FF] to-[#3CC65A]
-            shadow-[0_10px_30px_rgba(0,0,0,0.3)]
-            hover:scale-105 hover:shadow-[0_15px_40px_rgba(255,201,59,0.6)]
-            active:scale-95
-            transition-all duration-300 ease-out
-            cursor-pointer
-            before:content-[''] before:absolute before:inset-0 before:rounded-full
-            before:bg-gradient-to-b before:from-white/30 before:to-transparent
-            before:pointer-events-none
+            shadow-lg shadow-amber-500/20
+            hover:shadow-amber-500/40 hover:scale-[1.02]
+            active:scale-[0.98]
+            transition-all duration-300
           ">
-            Checkout
+            Checkout ({totalItems})
           </button>
         </div>
-      )}
+      </div>
     </main>
   );
 }
