@@ -125,4 +125,13 @@ export default [
     { id: 522, name: "Dirty Sprite Apple", image: "/categories/DIRTY FANTA/dirty-sprite-apple.jpg", price: 25, category: "dirty-fanta" },
     { id: 523, name: "Dirty Sprite Cotton Candy", image: "/categories/DIRTY FANTA/dirty-sprite-cotton-candy.jpg", price: 25, category: "dirty-fanta" },
     { id: 524, name: "Dirty Sprite Toronja", image: "/categories/DIRTY FANTA/dirty-sprite-toronja.jpg", price: 25, category: "dirty-fanta" },
+
+    // Hi-C
+    { id: 601, name: "Hi-C Blazin Blueberry", image: "/categories/HI-C/hi-c-blazin-blueberry.jpg", price: 25, category: "hi-c" },
+    { id: 602, name: "Hi-C Bopping Strawberry", image: "/categories/HI-C/hi-c-bopping-strawberry.jpg", price: 25, category: "hi-c" },
+    { id: 603, name: "Hi-C Flashin Fruit Punch", image: "/categories/HI-C/hi-c-flashin-fruit-punch.jpg", price: 25, category: "hi-c" },
+    { id: 604, name: "Hi-C Grabbin Grape", image: "/categories/HI-C/hi-c-grabbin-grabe.jpg", price: 25, category: "hi-c" },
+    { id: 605, name: "Hi-C Kiwi Kraze", image: "/categories/HI-C/hi-c-kiwi-kraze.jpg", price: 25, category: "hi-c" },
+    { id: 606, name: "Hi-C Orange Lavaburst", image: "/categories/HI-C/hi-c-orange-lavaburst.jpg", price: 25, category: "hi-c" },
+    { id: 607, name: "Hi-C Poppin Lemonade", image: "/categories/HI-C/hi-c-poppin-lemonade.jpg", price: 25, category: "hi-c" },
 ];
