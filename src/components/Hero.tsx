@@ -44,7 +44,7 @@ export default function Hero() {
           <img
             src="/td-studios-xmas-logo.png"
             alt="TD STUDIOS"
-            className="h-20 sm:h-24 w-auto drop-shadow-2xl animate-[breathe_3s_ease-in-out_infinite] select-none"
+            className="h-20 sm:h-24 w-auto drop-shadow-2xl animate-[breathe_3s_ease-in-out_infinite] select-none pointer-events-none"
             draggable="false"
             onContextMenu={(e) => e.preventDefault()}
           />

@@ -51,7 +51,7 @@ export default function ExploreMenus() {
                 <img
                   src={brand.image}
                   alt={brand.name}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-smooth select-none"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-smooth select-none pointer-events-none"
                   draggable="false"
                   onContextMenu={(e) => e.preventDefault()}
                 />

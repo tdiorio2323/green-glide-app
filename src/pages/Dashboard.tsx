@@ -43,11 +43,11 @@ export default function Dashboard() {
               Welcome to <span className="font-semibold text-white">TD STUDIOS</span>
             </p>
           </div>
-          <Link to="/" className="flex-1 flex justify-center">
+          <Link to="/" className="flex-1 flex justify-center hover:opacity-90 transition">
             <img
               src="/td-studios-xmas-logo.png"
               alt="TD STUDIOS"
-              className="h-16 w-auto drop-shadow-lg hover:opacity-90 transition cursor-pointer select-none"
+              className="h-16 w-auto drop-shadow-lg cursor-pointer select-none pointer-events-none"
               draggable="false"
               onContextMenu={(e) => e.preventDefault()}
             />
